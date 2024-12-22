@@ -1,0 +1,179 @@
+[
+    {
+      "serviceImage": "https://example.com/images/cleaning.jpg",
+      "serviceName": "Home Cleaning",
+      "serviceDescription": "Thorough cleaning services for your home, including dusting, mopping, and vacuuming.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider1.jpg",
+        "name": "Alice Johnson"
+      },
+      "serviceArea": "New York City, NY",
+      "servicePrice": 100
+    },
+    {
+      "serviceImage": "https://example.com/images/plumbing.jpg",
+      "serviceName": "Plumbing Repairs",
+      "serviceDescription": "Expert plumbing services for leak fixes, installations, and maintenance.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider2.jpg",
+        "name": "Bob Martin"
+      },
+      "serviceArea": "San Francisco, CA",
+      "servicePrice": 120
+    },
+    {
+      "serviceImage": "https://example.com/images/gardening.jpg",
+      "serviceName": "Gardening Services",
+      "serviceDescription": "Professional gardening to keep your lawn and plants healthy and beautiful.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider3.jpg",
+        "name": "Emma Green"
+      },
+      "serviceArea": "Seattle, WA",
+      "servicePrice": 80
+    },
+    {
+      "serviceImage": "https://example.com/images/electrician.jpg",
+      "serviceName": "Electrical Repairs",
+      "serviceDescription": "Quick and safe electrical fixes for your home or office.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider4.jpg",
+        "name": "John Doe"
+      },
+      "serviceArea": "Los Angeles, CA",
+      "servicePrice": 150
+    },
+    {
+      "serviceImage": "https://example.com/images/cooking.jpg",
+      "serviceName": "Personal Chef",
+      "serviceDescription": "Enjoy delicious meals prepared by a professional chef in your own home.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider5.jpg",
+        "name": "Sofia Brown"
+      },
+      "serviceArea": "Miami, FL",
+      "servicePrice": 200
+    },
+    {
+      "serviceImage": "https://example.com/images/tutoring.jpg",
+      "serviceName": "Math Tutoring",
+      "serviceDescription": "Experienced tutor to help you excel in mathematics.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider6.jpg",
+        "name": "William Scott"
+      },
+      "serviceArea": "Chicago, IL",
+      "servicePrice": 50
+    },
+    {
+      "serviceImage": "https://example.com/images/webdesign.jpg",
+      "serviceName": "Web Design",
+      "serviceDescription": "Creative and modern web design services for businesses and individuals.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider7.jpg",
+        "name": "Olivia Taylor"
+      },
+      "serviceArea": "Austin, TX",
+      "servicePrice": 300
+    },
+    {
+      "serviceImage": "https://example.com/images/photography.jpg",
+      "serviceName": "Event Photography",
+      "serviceDescription": "Capture your special moments with professional event photography.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider8.jpg",
+        "name": "Liam Moore"
+      },
+      "serviceArea": "Orlando, FL",
+      "servicePrice": 250
+    },
+    {
+      "serviceImage": "https://example.com/images/carpentry.jpg",
+      "serviceName": "Carpentry Work",
+      "serviceDescription": "Custom furniture, repairs, and woodwork by skilled carpenters.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider9.jpg",
+        "name": "Sophia Davis"
+      },
+      "serviceArea": "Denver, CO",
+      "servicePrice": 180
+    },
+    {
+      "serviceImage": "https://example.com/images/dogwalking.jpg",
+      "serviceName": "Dog Walking",
+      "serviceDescription": "Reliable dog walking services to keep your pets happy and healthy.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider10.jpg",
+        "name": "James Wilson"
+      },
+      "serviceArea": "San Diego, CA",
+      "servicePrice": 30
+    },
+    {
+      "serviceImage": "https://example.com/images/moving.jpg",
+      "serviceName": "Moving Services",
+      "serviceDescription": "Efficient and affordable moving services for a hassle-free relocation.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider11.jpg",
+        "name": "Charlotte Anderson"
+      },
+      "serviceArea": "Atlanta, GA",
+      "servicePrice": 400
+    },
+    {
+      "serviceImage": "https://example.com/images/personaltrainer.jpg",
+      "serviceName": "Personal Training",
+      "serviceDescription": "Customized workout plans and training sessions to meet your fitness goals.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider12.jpg",
+        "name": "Benjamin Walker"
+      },
+      "serviceArea": "Phoenix, AZ",
+      "servicePrice": 100
+    },
+    {
+      "serviceImage": "https://example.com/images/interiordesign.jpg",
+      "serviceName": "Interior Design",
+      "serviceDescription": "Professional interior design to transform your living space.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider13.jpg",
+        "name": "Mia Hall"
+      },
+      "serviceArea": "Boston, MA",
+      "servicePrice": 500
+    },
+    {
+      "serviceImage": "https://example.com/images/babysitting.jpg",
+      "serviceName": "Babysitting",
+      "serviceDescription": "Trustworthy babysitters to care for your children with love and attention.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider14.jpg",
+        "name": "Harper Allen"
+      },
+      "serviceArea": "Dallas, TX",
+      "servicePrice": 20
+    },
+    {
+      "serviceImage": "https://example.com/images/tailoring.jpg",
+      "serviceName": "Tailoring",
+      "serviceDescription": "Expert tailoring services for alterations and custom-made clothing.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider15.jpg",
+        "name": "Ella Young"
+      },
+      "serviceArea": "Las Vegas, NV",
+      "servicePrice": 60
+    },
+    {
+      "serviceImage": "https://example.com/images/translation.jpg",
+      "serviceName": "Translation Services",
+      "serviceDescription": "Professional translation services for documents, websites, and more.",
+      "serviceProvider": {
+        "image": "https://example.com/images/provider16.jpg",
+        "name": "Noah Wright"
+      },
+      "serviceArea": "Washington, D.C.",
+      "servicePrice": 120
+    }
+  ]
+  
