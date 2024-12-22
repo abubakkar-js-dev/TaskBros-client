@@ -1,15 +1,16 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import logoNav from "../../assets/images/logo2.png";
+import AuthContext from "../../contexts/authcontext/AuthContext";
 
 const Navbar = () => {
+  const {user,logOutUser} = useContext(AuthContext);
   const [dropDownState, setDropDownState] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
   const location = useLocation();
-  const user = true;
 
   // State and ref for the dashboard dropdown menu
   const [dropDownDashState, setDropDownDashState] = useState(false);
@@ -51,6 +52,15 @@ const Navbar = () => {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle("dark");
+  };
+
+  const handleLogOut = () => {
+    logOutUser().then(()=>{
+      console.log('User logged out successfully');
+    })
+    .catch(err =>{
+      console.log(err.message);
+    })
   };
 
 
@@ -135,13 +145,13 @@ const Navbar = () => {
 
             {/* Dropdown Menu */}
             {dropDownDashState && (
-              <ul className="absolute left-0 top-10 z-10 w-48 rounded-lg bg-white shadow-lg p-4 space-y-2 text-black">
+              <ul className="absolute left-0 top-10 z-10 w-56 rounded-lg bg-white shadow-lg p-4 space-y-2 text-black">
                 <li>
                   <NavLink
                     to="/add-service"
                     className={({ isActive }) =>
-                      `block px-4 py-2 rounded hover:bg-primary/70 transition-all duration-300 ${
-                        isActive ? "bg-secondary text-white" : ""
+                      `block px-4 py-2 rounded hover:bg-primary/70 hover:text-white transition-all duration-300 ${
+                        isActive ? "bg-primary/80 text-white" : ""
                       }`
                     }
                   >
@@ -152,8 +162,8 @@ const Navbar = () => {
                   <NavLink
                     to="/manage-services"
                     className={({ isActive }) =>
-                      `block px-4 py-2 rounded hover:bg-primary/70 transition-all duration-300 ${
-                        isActive ? "bg-secondary text-white" : ""
+                      `block px-4 py-2 rounded hover:bg-primary/70 hover:text-white transition-all duration-300 ${
+                        isActive ? "bg-primary/80 text-white" : ""
                       }`
                     }
                   >
@@ -164,8 +174,8 @@ const Navbar = () => {
                   <NavLink
                     to="/booked-services"
                     className={({ isActive }) =>
-                      `block px-4 py-2 rounded hover:bg-primary/70 transition-all duration-300 ${
-                        isActive ? "bg-secondary text-white" : ""
+                      `block px-4 py-2 rounded hover:bg-primary/70 hover:text-white transition-all duration-300 ${
+                        isActive ? "bg-primary/80 text-white" : ""
                       }`
                     }
                   >
@@ -176,8 +186,8 @@ const Navbar = () => {
                   <NavLink
                     to="/service-to-do"
                     className={({ isActive }) =>
-                      `block px-4 py-2 rounded hover:bg-primary/70 transition-all duration-300 ${
-                        isActive ? "bg-secondary text-white" : ""
+                      `block px-4 py-2 rounded hover:bg-primary/70  hover:text-white transition-all duration-300 ${
+                        isActive ? "bg-primary/80 text-white" : ""
                       }`
                     }
                   >
@@ -198,12 +208,12 @@ const Navbar = () => {
         >
           {isDarkMode ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
         </button>
-        {user ? (
-          <button className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
+        {user && user?.email ? (
+          <button onClick={handleLogOut} className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
             LogOut
           </button>
         ) : (
-          <Link className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
+          <Link to='/login' className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
             Login
           </Link>
         )}

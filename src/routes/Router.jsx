@@ -17,7 +17,7 @@ import Registation from "../pages/Registation";
             element: <Login />
         },
         {
-            path: '/registation',
+            path: '/register',
             element: <Registation />
         },
         {

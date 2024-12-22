@@ -11,6 +11,10 @@ export default {
         secondary: '#E67E22',
         lightgray: '#ECF0F1',
         darkgray: '#34495E',
+      },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       }
     },
   },
