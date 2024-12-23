@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
   const location = useLocation();
 
   return (
-    <div className={`border shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col ${location.pathname==='/all-services' && 'flex-row'}`}
+    <div className="border shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col "
     >
       {/* Image Section */}
       <div className="relative">
