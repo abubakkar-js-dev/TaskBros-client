@@ -65,7 +65,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="relative flex items-center justify-between bg-primary px-4 py-2 text-white pt-4">
+    <nav className="relative flex items-center justify-between bg-primary px-4 py-2 text-white pt-4 z-50">
       {/* Left Section: Logo and Website Name */}
       <div className="flex items-center gap-3">
         <Link to="/" className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex items-center gap-2">

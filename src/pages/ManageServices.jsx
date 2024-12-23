@@ -33,7 +33,7 @@ const ManageServices = () => {
       </div>
 
       {/*services Card section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
         {allServices.map(service=> <ServiceCard key={service._id} service={service} />)}
       </div>
     </div>

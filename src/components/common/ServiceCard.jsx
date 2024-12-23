@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { BsFillTrash3Fill } from "react-icons/bs";
-import { FaRegEdit } from "react-icons/fa";
+import UpdateServiceModal from "../others/UpdateServiceModal";
 
 const ServiceCard = ({ service }) => {
   const {
@@ -73,12 +73,7 @@ const ServiceCard = ({ service }) => {
         <div className="mt-auto">
           {location.pathname === "/manage-services" ? (
             <div className="flex justify-between space-x-2">
-              <button
-                className="bg-[#4A90E2] hover:bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
-                title="Edit Service"
-              >
-                <FaRegEdit className="w-6 h-6" />
-              </button>
+              <UpdateServiceModal service={service} />
               <button
                 className="bg-[#F97316] hover:bg-orange-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
                 title="Delete Service"
