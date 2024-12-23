@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import UpdateServiceModal from "../others/UpdateServiceModal";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service,updateServicesInState }) => {
   const {
     _id,
     description,
@@ -35,7 +35,8 @@ const ServiceCard = ({ service }) => {
         <div>
           <div className="flex justify-between items-start">
             <h2 className="text-2xl font-semibold text-gray-800">{name}</h2>
-            <div className="flex items-center gap-3">
+            <div className={`flex items-center gap-3 ${location.pathname ==='/manage-services' && 'hidden'}`}
+            >
               <div className="text-right">
                 <h3 className="text-sm text-gray-500 italic">From:</h3>
                 <h3 className="text-sm text-gray-700">{provider_name}</h3>
@@ -73,7 +74,7 @@ const ServiceCard = ({ service }) => {
         <div className="mt-auto">
           {location.pathname === "/manage-services" ? (
             <div className="flex justify-between space-x-2">
-              <UpdateServiceModal service={service} />
+              <UpdateServiceModal service={service} updateServicesInState={updateServicesInState} />
               <button
                 className="bg-[#F97316] hover:bg-orange-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
                 title="Delete Service"
@@ -97,6 +98,7 @@ const ServiceCard = ({ service }) => {
 
 ServiceCard.propTypes = {
   service: PropTypes.object.isRequired,
+  updateServicesInState: PropTypes.func.isRequired,
 };
 
 export default ServiceCard;

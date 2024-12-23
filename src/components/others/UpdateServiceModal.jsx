@@ -1,34 +1,28 @@
+import axios from "axios";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 
-const UpdateServiceModal = ({ service, onUpdate }) => {
+const UpdateServiceModal = ({ service,updateServicesInState }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState(service || {});
-  const {
-    description,
-    imageUrl,
-    name,
-    price,
-    area,
-  } = service;
-  console.log(service.area);
+  const { description, imageUrl, name, price, area, _id } = service;
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  useEffect(()=>{
-    if(isOpen){
-        document.body.style.overflow = "hidden";
-    }else{
-        document.body.style.overflow ="auto";
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
 
-    return ()=>{
-        document.body.style.overflow="auto";
-    }
-
-  },[isOpen])
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,11 +31,25 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdate(formData); // Pass updated data to parent
-    closeModal();
+    const updatedService = {
+      description: formData.description,
+      imageUrl: formData.imageUrl,
+      name: formData.name,
+      price: formData.price,
+      area: formData.area,
+    };
+
+    axios
+      .patch(`${import.meta.env.VITE_API_URL}/update-service/${_id}`, updatedService)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {       
+          toast.success("Your Service Updated Successfully!");
+          closeModal();
+        } else {
+          toast.error("Faild to Update your Service.");
+        }
+      });
   };
-
-
 
   return (
     <div>
@@ -63,10 +71,13 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
           aria-labelledby="modal-title"
         >
           {/* Modal Content */}
-          <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+          <div className="bg-white w-full max-w-lg rounded-lg shadow-lg p-6">
             {/* Modal Header */}
             <div className="flex justify-between items-center border-b pb-3">
-              <h2 id="modal-title" className="text-lg font-semibold text-gray-800">
+              <h2
+                id="modal-title"
+                className="text-lg font-semibold text-gray-800"
+              >
                 Update Service
               </h2>
               <button
@@ -104,7 +115,7 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
                   type="text"
                   id="imageUrl"
                   name="imageUrl"
-                  value={imageUrl || ""}
+                  defaultValue={imageUrl || ""}
                   onChange={handleChange}
                   placeholder="Enter service name"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -123,7 +134,7 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
                   type="text"
                   id="name"
                   name="name"
-                  value={name || ""}
+                  defaultValue={name || ""}
                   onChange={handleChange}
                   placeholder="Enter service name"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -143,7 +154,7 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
                   type="number"
                   id="price"
                   name="price"
-                  value={price || ""}
+                  defaultValue={price || ""}
                   onChange={handleChange}
                   placeholder="Enter price"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -163,7 +174,7 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
                   type="text"
                   id="area"
                   name="area"
-                  value={area || ""}
+                  defaultValue={area || ""}
                   onChange={handleChange}
                   placeholder="Enter price"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -182,7 +193,7 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
                 <textarea
                   id="description"
                   name="description"
-                  value={description || ""}
+                  defaultValue={description || ""}
                   onChange={handleChange}
                   placeholder="Enter description"
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -214,9 +225,9 @@ const UpdateServiceModal = ({ service, onUpdate }) => {
   );
 };
 
-UpdateServiceModal.propTypes={
-    service: PropTypes.object.isRequired,
-    onUpdate: PropTypes.func.isRequired,
-}
+UpdateServiceModal.propTypes = {
+  service: PropTypes.object.isRequired,
+  updateServicesInState: PropTypes.func.isRequired,
+};
 
 export default UpdateServiceModal;

@@ -2,16 +2,26 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import ServiceCard from "../components/common/ServiceCard";
 import AuthContext from "../contexts/authcontext/AuthContext";
+import { useLocation } from "react-router-dom";
 
 const ManageServices = () => {
-    const [allServices,setAllServices] = useState([]);
-    const {user} = useContext(AuthContext);
-    useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/my-services/${user.email}`)
-        .then(res=>{
-            setAllServices(res.data);
-        })
-    },[user.email]);
+  const [myServices, setMyServices] = useState([]);
+  const { user } = useContext(AuthContext);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/my-services/${user.email}`)
+      .then((res) => {
+        setMyServices(res.data);
+      });
+  }, [user.email]);
+
+  // updated my services in state
+  const updateServicesInState = (updatedService) => {
+    myServices.map((service) => {
+      service._id === updatedService._id ? updatedService : service;
+    });
+  };
 
   return (
     <div className="section-wrap container mx-auto mt-16">
@@ -34,7 +44,13 @@ const ManageServices = () => {
 
       {/*services Card section */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-        {allServices.map(service=> <ServiceCard key={service._id} service={service} />)}
+        {myServices.map((service) => (
+          <ServiceCard
+            key={service._id}
+            service={service}
+            updateServicesInState={updateServicesInState}
+          />
+        ))}
       </div>
     </div>
   );
