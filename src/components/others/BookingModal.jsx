@@ -3,6 +3,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../../contexts/authcontext/AuthContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import Toast from 'react-hot-toast'
 
 const BookingModal = ({ service }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -12,14 +14,11 @@ const BookingModal = ({ service }) => {
   console.log(startDate);
   const {
     _id,
-    description,
     imageUrl,
     name,
     price,
     provider_name,
-    provider_img,
     provider_email,
-    area,
   } = service;
 
   const { displayName: booking_person_name, email: booking_person_email } =
@@ -55,6 +54,15 @@ const BookingModal = ({ service }) => {
       service_status: "pending",
     };
     console.log(newBooking);
+    // save into db
+    axios.post(`${import.meta.env.VITE_API_URL}/book-service`,newBooking)
+    .then(res=>{
+        if(res.data.insertedId){
+            // console.log('You have booked successfully')
+            Toast.success('You have booked successfully');
+            setOpenModal(false);
+        }
+    })
   };
 
   return (
