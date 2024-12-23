@@ -12,7 +12,7 @@ const PopularServices = () => {
     },[])
     console.log(popularServices);
   return (
-    <div className="section-wrap container mx-auto">
+    <div className="section-wrap max-w-5xl mx-auto">
       <div className="mb-24">
         {/* title section */}
         <h4 className="flex gap-3 items-center">

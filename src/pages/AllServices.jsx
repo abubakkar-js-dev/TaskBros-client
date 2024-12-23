@@ -12,7 +12,7 @@ const AllServices = () => {
     },[])
     console.log('all',allServices)
   return (
-    <div className="section-wrap container mx-auto mt-16 md:mt-20">
+    <div className="section-wrap p-4 max-w-7xl mx-auto mt-16 md:mt-20">
       <div className="mb-16 text-center">
         {/* Title Section */}
         <h4 className="flex items-center justify-center gap-3 mb-2">

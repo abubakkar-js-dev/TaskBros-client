@@ -30,7 +30,7 @@ import AllServices from "../pages/AllServices";
             element: <PrivaterRoute><AddService /></PrivaterRoute>
         },
         {
-            path: '/all-services/:id',
+            path: '/services/:id',
             element: <PrivaterRoute><ServiceDetails /></PrivaterRoute>
         },
         {

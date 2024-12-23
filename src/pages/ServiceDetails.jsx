@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BookingModal from "../components/others/BookingModal";
 
 const ServiceDetails = () => {
   const [service, setService] = useState({});
@@ -20,11 +21,6 @@ const ServiceDetails = () => {
       .get(`${import.meta.env.VITE_API_URL}/all-services/${id}`)
       .then((res) => setService(res.data));
   }, [id]);
-
-  const handleBooking = () => {
-    // Booking logic here
-    console.log("Booking service:", service);
-  };
 
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
@@ -62,16 +58,18 @@ const ServiceDetails = () => {
           {/* Description */}
           <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
 
+                   {/* Price */}
+          <h3 className="text-xl font-semibold text-orange-600 mb-6">
+            Price: ${price}
+          </h3>
+
           {/* Service Location */}
           <div className="flex items-center gap-4 mb-4">
             <span className="text-gray-600 font-medium">Location:</span>
             <span className="text-lg font-semibold text-gray-800">{area}</span>
           </div>
 
-          {/* Price */}
-          <h3 className="text-xl font-semibold text-orange-600 mb-6">
-            Price: ${price}
-          </h3>
+ 
 
           {/* Service Provider Information */}
           <div className="flex items-center gap-4">
@@ -90,12 +88,8 @@ const ServiceDetails = () => {
 
       {/* Book Now Button */}
       <div className="text-center">
-        <button
-          onClick={handleBooking}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300"
-        >
-          Book Now
-        </button>
+      {/* book now modal */}
+      <BookingModal service={service} />
       </div>
     </div>
   );

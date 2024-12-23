@@ -64,7 +64,7 @@ const ServiceCard = ({ service }) => {
         {/* Action btn */}
         <div className="mt-auto">
           <Link
-            to={`/all-services/${_id}`}
+            to={`/services/${_id}`}
             className="text-center px-6 py-2 text-white bg-orange-500 hover:bg-orange-600 font-medium rounded-md transition-colors duration-200 inline-block"
           >
             View Details
