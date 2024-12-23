@@ -16,4 +16,13 @@
     .btn{
         @apply px-5 py-2 rounded-md bg-blue-500 text-white;
     }
+    .section-wrap{
+        @apply mb-16 md:mb-20 lg:mb-24;
+    }
+    .section-subtitle{
+        @apply text-lg font-normal mb-2;
+    }
+    .section-title{
+        @apply text-2xl lg:text-3xl font-medium;
+    }
 }

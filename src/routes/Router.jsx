@@ -2,6 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
 import Registation from "../pages/Registation";
+import AddService from "../pages/AddService";
+import PrivaterRoute from "./PrivaterRoute";
+import Home from "../pages/Home";
+import ServiceDetails from "../pages/ServiceDetails";
+import AllServices from "../pages/AllServices";
 
  const router = createBrowserRouter([
     {
@@ -10,7 +15,7 @@ import Registation from "../pages/Registation";
       children: [
         {
             path: '/',
-            element: <div>Home</div>
+            element: <Home />
         },
         {
             path: '/login',
@@ -21,27 +26,31 @@ import Registation from "../pages/Registation";
             element: <Registation />
         },
         {
-            path: 'all-services',
-            element: <div>All services</div>
+            path: '/add-service',
+            element: <PrivaterRoute><AddService /></PrivaterRoute>
         },
         {
-            path: 'services/:id',
+            path: '/all-services/:id',
+            element: <PrivaterRoute><ServiceDetails /></PrivaterRoute>
+        },
+        {
+            path: '/all-services',
+            element: <AllServices />
+        },
+        {
+            path: '/services/:id',
             element: <div>Service</div>
         },
         {
-            path: 'add-service',
-            element: <div>Add service</div>
-        },
-        {
-            path: 'manage-services',
+            path: '/manage-services',
             element: <div>Manage services</div>
         },
         {
-            path: 'booked-services',
+            path: '/booked-services',
             element: <div>Booked services</div>
         },
         {
-            path: 'service-to-do',
+            path: '/service-to-do',
             element: <div>Service to do</div>
         }
       ]

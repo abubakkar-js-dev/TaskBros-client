@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authcontext/AuthContext";
 
 const Registration = () => {
   const {createUser,setUser,updateUserProfile} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const {from} = location.state  || {from: null}; 
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -22,7 +24,7 @@ const Registration = () => {
         updateUserProfile({displayName:full_name,photoURL:photo_url})
         .then(()=>{
           console.log('Profile updated successfully');
-          navigate('/');
+          navigate(from || '/');
         })
         .catch(err =>{
           console.log(err.message);

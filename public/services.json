@@ -1,179 +1,173 @@
+
 [
-    {
-      "serviceImage": "https://example.com/images/cleaning.jpg",
-      "serviceName": "Home Cleaning",
-      "serviceDescription": "Thorough cleaning services for your home, including dusting, mopping, and vacuuming.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider1.jpg",
-        "name": "Alice Johnson"
-      },
-      "serviceArea": "New York City, NY",
-      "servicePrice": 100
-    },
-    {
-      "serviceImage": "https://example.com/images/plumbing.jpg",
-      "serviceName": "Plumbing Repairs",
-      "serviceDescription": "Expert plumbing services for leak fixes, installations, and maintenance.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider2.jpg",
-        "name": "Bob Martin"
-      },
-      "serviceArea": "San Francisco, CA",
-      "servicePrice": 120
-    },
-    {
-      "serviceImage": "https://example.com/images/gardening.jpg",
-      "serviceName": "Gardening Services",
-      "serviceDescription": "Professional gardening to keep your lawn and plants healthy and beautiful.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider3.jpg",
-        "name": "Emma Green"
-      },
-      "serviceArea": "Seattle, WA",
-      "servicePrice": 80
-    },
-    {
-      "serviceImage": "https://example.com/images/electrician.jpg",
-      "serviceName": "Electrical Repairs",
-      "serviceDescription": "Quick and safe electrical fixes for your home or office.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider4.jpg",
-        "name": "John Doe"
-      },
-      "serviceArea": "Los Angeles, CA",
-      "servicePrice": 150
-    },
-    {
-      "serviceImage": "https://example.com/images/cooking.jpg",
-      "serviceName": "Personal Chef",
-      "serviceDescription": "Enjoy delicious meals prepared by a professional chef in your own home.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider5.jpg",
-        "name": "Sofia Brown"
-      },
-      "serviceArea": "Miami, FL",
-      "servicePrice": 200
-    },
-    {
-      "serviceImage": "https://example.com/images/tutoring.jpg",
-      "serviceName": "Math Tutoring",
-      "serviceDescription": "Experienced tutor to help you excel in mathematics.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider6.jpg",
-        "name": "William Scott"
-      },
-      "serviceArea": "Chicago, IL",
-      "servicePrice": 50
-    },
-    {
-      "serviceImage": "https://example.com/images/webdesign.jpg",
-      "serviceName": "Web Design",
-      "serviceDescription": "Creative and modern web design services for businesses and individuals.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider7.jpg",
-        "name": "Olivia Taylor"
-      },
-      "serviceArea": "Austin, TX",
-      "servicePrice": 300
-    },
-    {
-      "serviceImage": "https://example.com/images/photography.jpg",
-      "serviceName": "Event Photography",
-      "serviceDescription": "Capture your special moments with professional event photography.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider8.jpg",
-        "name": "Liam Moore"
-      },
-      "serviceArea": "Orlando, FL",
-      "servicePrice": 250
-    },
-    {
-      "serviceImage": "https://example.com/images/carpentry.jpg",
-      "serviceName": "Carpentry Work",
-      "serviceDescription": "Custom furniture, repairs, and woodwork by skilled carpenters.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider9.jpg",
-        "name": "Sophia Davis"
-      },
-      "serviceArea": "Denver, CO",
-      "servicePrice": 180
-    },
-    {
-      "serviceImage": "https://example.com/images/dogwalking.jpg",
-      "serviceName": "Dog Walking",
-      "serviceDescription": "Reliable dog walking services to keep your pets happy and healthy.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider10.jpg",
-        "name": "James Wilson"
-      },
-      "serviceArea": "San Diego, CA",
-      "servicePrice": 30
-    },
-    {
-      "serviceImage": "https://example.com/images/moving.jpg",
-      "serviceName": "Moving Services",
-      "serviceDescription": "Efficient and affordable moving services for a hassle-free relocation.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider11.jpg",
-        "name": "Charlotte Anderson"
-      },
-      "serviceArea": "Atlanta, GA",
-      "servicePrice": 400
-    },
-    {
-      "serviceImage": "https://example.com/images/personaltrainer.jpg",
-      "serviceName": "Personal Training",
-      "serviceDescription": "Customized workout plans and training sessions to meet your fitness goals.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider12.jpg",
-        "name": "Benjamin Walker"
-      },
-      "serviceArea": "Phoenix, AZ",
-      "servicePrice": 100
-    },
-    {
-      "serviceImage": "https://example.com/images/interiordesign.jpg",
-      "serviceName": "Interior Design",
-      "serviceDescription": "Professional interior design to transform your living space.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider13.jpg",
-        "name": "Mia Hall"
-      },
-      "serviceArea": "Boston, MA",
-      "servicePrice": 500
-    },
-    {
-      "serviceImage": "https://example.com/images/babysitting.jpg",
-      "serviceName": "Babysitting",
-      "serviceDescription": "Trustworthy babysitters to care for your children with love and attention.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider14.jpg",
-        "name": "Harper Allen"
-      },
-      "serviceArea": "Dallas, TX",
-      "servicePrice": 20
-    },
-    {
-      "serviceImage": "https://example.com/images/tailoring.jpg",
-      "serviceName": "Tailoring",
-      "serviceDescription": "Expert tailoring services for alterations and custom-made clothing.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider15.jpg",
-        "name": "Ella Young"
-      },
-      "serviceArea": "Las Vegas, NV",
-      "servicePrice": 60
-    },
-    {
-      "serviceImage": "https://example.com/images/translation.jpg",
-      "serviceName": "Translation Services",
-      "serviceDescription": "Professional translation services for documents, websites, and more.",
-      "serviceProvider": {
-        "image": "https://example.com/images/provider16.jpg",
-        "name": "Noah Wright"
-      },
-      "serviceArea": "Washington, D.C.",
-      "servicePrice": 120
-    }
-  ]
-  
+  {
+    "imageUrl": "https://i.ibb.co.com/4F2hXnJ/Home-Cleaning.jpg",
+    "name": "Home Cleaning",
+    "price": 100,
+    "area": "New York City, NY",
+    "description": "Thorough cleaning services for your home, including dusting, mopping, and vacuuming. Intrinsicly empower next-generation initiatives vis-a-vis open-source total linkage. Quickly build multidisciplinary web-readiness.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/V9kxgbx/Plumbing-Repairs.jpg",
+    "name": "Plumbing Repairs",
+    "price": 120,
+    "area": "San Francisco, CA",
+    "description": "Expert plumbing services for leak fixes, installations, and maintenance.Enthusiastically fabricate backward-compatible applications after extensible synergy. Phosfluorescently generate cost effective internal.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/qxN2y6p/Gardening-Services.jpg",
+    "name": "Gardening Services",
+    "price": 80,
+    "area": "Seattle, WA",
+    "description": "Professional gardening to keep your lawn and plants healthy and beautiful.Proactively maximize worldwide solutions without long-term high-impact applications. Progressively fashion pandemic networks.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/jR0yF71/Electrical-Repairs.jpg",
+    "name": "Electrical Repairs",
+    "price": 150,
+    "area": "Los Angeles, CA",
+    "description": "Quick and safe electrical fixes for your home or office.Rapidiously matrix multidisciplinary web-readiness whereas technically sound mindshare. Dynamically communicate high-quality human.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/jR0yF71/Electrical-Repairs.jpg",
+    "name": "Electrical Repairs",
+    "price": 150,
+    "area": "Los Angeles, CA",
+    "description": "Quick and safe electrical fixes for your home or office.Rapidiously matrix multidisciplinary web-readiness whereas technically sound mindshare. Dynamically communicate high-quality human.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/cgfwMBP/Personal-Chef.jpg",
+    "name": "Personal Chef",
+    "price": 200,
+    "area": "Miami, FL",
+    "description": "Enjoy delicious meals prepared by a professional chef in your own home. Collaboratively parallel task flexible data before exceptional web services. Completely reinvent stand-alone.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/7r9vf2t/Math-Tutoring.jpg",
+    "name": "Math Tutoring",
+    "price": 50,
+    "area": "Chicago, IL",
+    "description": "Experienced tutor to help you excel in mathematics. Objectively impact pandemic relationships before impactful schemas. Dynamically embrace cost effective scenarios.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/DQMVNj9/Web-Design.jpg",
+    "name": "Web Design",
+    "price": 300,
+    "area": "Austin, TX",
+    "description": "Creative and modern web design services for businesses and individuals. Proactively unleash functional schemas without bricks-and-clicks leadership. Professionally incentivize top-line technology before.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/FxCY6xk/Event-Photography.jpg",
+    "name": "Event Photography",
+    "price": 250,
+    "area": "Orlando, FL",
+    "description": "Capture your special moments with professional event photography. Objectively disintermediate quality manufactured products whereas diverse catalysts for change. Proactively visualize.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/D5PHpzs/Carpentry-Work.jpg",
+    "name": "Carpentry Work",
+    "price": 180,
+    "area": "Denver, CO",
+    "description": "Custom furniture, repairs, and woodwork by skilled carpenters. Proactively supply orthogonal vortals for out-of-the-box vortals. Monotonectally productivate functional leadership after.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/Zm8mr1G/Dog-Walking.jpg",
+    "name": "Dog Walking",
+    "price": 30,
+    "area": "San Diego, CA",
+    "description": "Reliable dog walking services to keep your pets happy and healthy. Phosfluorescently re-engineer error-free expertise and integrated testing procedures. Appropriately reintermediate scalable experiences.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/NrVKhzR/Moving-Services.jpg",
+    "name": "Moving Services",
+    "price": 400,
+    "area": "Atlanta, GA",
+    "description": "Efficient and affordable moving services for a hassle-free relocation. Energistically target enabled information whereas customized data. Compellingly brand fully researched materials.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/rc9Ff9W/Personal-Training.jpg",
+    "name": "Personal Training",
+    "price": 100,
+    "area": "Phoenix, AZ",
+    "description": "Customized workout plans and training sessions to meet your fitness goals. Credibly provide access to effective systems whereas distributed schemas. Objectively restore holistic.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/pZXmVft/Interior-Design.jpg",
+    "name": "Interior Design",
+    "price": 500,
+    "area": "Boston, MA",
+    "description": "Professional interior design to transform your living space. Dramatically restore fully tested methods of empowerment after process-centric quality vectors. Continually.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/SmBPCGC/Babysitting.jpg",
+    "name": "Babysitting",
+    "price": 20,
+    "area": "Dallas, TX",
+    "description": "Trustworthy babysitters to care for your children with love and attention. Efficiently formulate transparent bandwidth through customized experiences. Quickly fabricate B2B intellectual capital.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/j31SyWv/Tailoring.jpg",
+    "name": "Tailoring",
+    "price": 60,
+    "area": "Las Vegas, NV",
+    "description": "Expert tailoring services for alterations and custom-made clothing. Credibly maintain corporate supply chains after customer directed value. Holisticly productivate e-business.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  },
+  {
+    "imageUrl": "https://i.ibb.co.com/vvLXK0d/Translation-Services.jpg",
+    "name": "Translation Services",
+    "price": 120,
+    "area": "Washington, D.C.",
+    "description": "Professional translation services for documents, websites, and more. Holisticly transform technically sound meta-services via mission-critical data. Dramatically reconceptualize revolutionary information.",
+    "provider_name": "Abu  Bakkar",
+    "provider_email": "abu@bakkar.com",
+    "provider_img": "https://www.allprodad.com/wp-content/uploads/2021/03/05-12-21-happy-people.jpg"
+  }
+]
