@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../../contexts/authcontext/AuthContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const BookingModal = ({service}) => {
+const BookingModal = ({ service }) => {
   const [openModal, setOpenModal] = useState(false);
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [startDate, setStartDate] = useState(new Date());
+  const addressRef = useRef();
+  console.log(startDate);
   const {
     _id,
     description,
@@ -17,11 +22,9 @@ const BookingModal = ({service}) => {
     area,
   } = service;
 
-  const {displayName: booking_provider,email: booking_provider_email} = user;
-  console.log(booking_provider_email,booking_provider);
-
-
-
+  const { displayName: booking_person_name, email: booking_person_email } =
+    user;
+  console.log(booking_person_email, booking_person_name);
 
   useEffect(() => {
     if (openModal) {
@@ -32,7 +35,27 @@ const BookingModal = ({service}) => {
     return () => (document.body.style.overflow = "auto");
   }, [openModal]);
 
-
+  const handleConfirmBooking = (e) => {
+    e.preventDefault();
+    const booking_address = addressRef.current.value;
+    const bookingInfo = {
+      booking_person_email,
+      booking_person_name,
+      booking_address,
+      booking_date: startDate,
+    };
+    const newBooking = {
+      service_id: _id,
+      service_name: name,
+      service_img: imageUrl,
+      service_provider_email: provider_email,
+      service_provider_name: provider_name,
+      service_price: price,
+      bookingInfo,
+      service_status: "pending",
+    };
+    console.log(newBooking);
+  };
 
   return (
     <div className="w-72 mx-auto flex items-center justify-center">
@@ -66,139 +89,211 @@ const BookingModal = ({service}) => {
               Close
             </button>
             <div className="grid lg:grid-cols-2 gap-8">
-                <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-                  <div className="flex flex-col space-y-1.5 lg:p-6 p-2">
-                    <h3 className="text-2xl font-semibold whitespace-nowrap">
-                      Service Details
-                    </h3>
-                  </div>
-                  <div className="lg:p-6 p-2">
-                    {/* services Details form */}
-                    <form className="space-y-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-left">Service Id</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          defaultValue={_id}
-                          type="text"
-                          disabled
-                          name="_id"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Service Name</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="text"
-                          defaultValue={name}
-                          name="name"
-                          disabled
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Service Image URL</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="text"
-                          defaultValue={imageUrl}
-                          name="imageUrl"
-                          disabled
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Provider Email</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="email"
-                          defaultValue={provider_email}
-                          name="provider_email"
-                          disabled
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Provider Name</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="email"
-                          defaultValue={provider_name}
-                          name="provider_name"
-                          disabled
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium">Service Price</label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="text"
-                          defaultValue={price}
-                          disabled
-                        />
-                      </div>
-                    </form>
-                  </div>
+              <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div className="flex flex-col space-y-1.5 lg:p-6 p-2">
+                  <h3 className="text-2xl font-semibold whitespace-nowrap">
+                    Service Details
+                  </h3>
                 </div>
-                <div className="rounded-lg border bg-card  shadow-sm self-start">
-                  <div className="flex flex-col space-y-1.5 lg:p-6 p-2">
-                    <h3 className="text-2xl font-semibold whitespace-nowrap">
-                      User Information
-                    </h3>
-                  </div>
-                  <div className="lg:p-6 p-2">
-                    {/* Personal Information details form */}
-                    <form className="space-y-4">
+                <div className="lg:p-6 p-2">
+                  {/* services Details form */}
+                  <form className="space-y-4">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="services_id"
+                        className="text-sm font-medium text-left"
+                      >
+                        Service Id
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        defaultValue={_id}
+                        type="text"
+                        disabled
+                        autoComplete="off"
+                        name="services_id"
+                        id="services_id"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="service_name"
+                        className="text-sm font-medium"
+                      >
+                        Service Name
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="text"
+                        defaultValue={name}
+                        name="service_name"
+                        id="service_name"
+                        disabled
+                        autoComplete="off"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="service_img"
+                        className="text-sm font-medium"
+                      >
+                        Service Image URL
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="text"
+                        defaultValue={imageUrl}
+                        name="service_img"
+                        id="service_img"
+                        disabled
+                        autoComplete="off"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="service_provider_emai"
+                        className="text-sm font-medium"
+                      >
+                        Provider Email
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="email"
+                        defaultValue={provider_email}
+                        name="service_provider_email"
+                        id="service_provider_emai"
+                        disabled
+                        autoComplete="off"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="service_provider_name"
+                        className="text-sm font-medium"
+                      >
+                        Provider Name
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="email"
+                        defaultValue={provider_name}
+                        name="service_provider_name"
+                        id="service_provider_name"
+                        disabled
+                        autoComplete="off"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="service_price"
+                        className="text-sm font-medium"
+                      >
+                        Service Price
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="text"
+                        defaultValue={price}
+                        disabled
+                        autoComplete="off"
+                        name="service_price"
+                        id="service_price"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div className="rounded-lg border shadow-sm self-start">
+                <div className="flex flex-col space-y-1.5 lg:p-6 p-2">
+                  <h3 className="text-2xl font-semibold whitespace-nowrap">
+                    User Information
+                  </h3>
+                </div>
+                <div className="lg:p-6 p-2">
+                  {/* Personal Information details form */}
+                  <form id="personInfo" className="space-y-4">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="booking_person_email"
+                        className="text-sm font-medium leading-none"
+                      >
+                        Current User Email
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        type="email"
+                        defaultValue={booking_person_email}
+                        disabled
+                        autoComplete="off"
+                        name="booking_person_email"
+                        id="booking_person_email"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="booking_person_name"
+                        className="text-sm font-medium leading-none"
+                      >
+                        Current User Name
+                      </label>
+                      <input
+                        className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                        defaultValue={booking_person_name}
+                        type="text"
+                        disabled
+                        autoComplete="off"
+                        name="booking_person_name"
+                        id="booking_person_name"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-sm font-medium leading-none">
-                          Current User Email
+                        <label
+                          htmlFor="startDate"
+                          className="text-sm font-medium leading-none"
+                        >
+                          Service Taking Date
+                        </label>
+                        <div>
+                          <DatePicker
+                            name="startDate"
+                            id="startDate"
+                            className="bg-transparent flex h-10 w-full rounded-md border px-3"
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="booking_address"
+                          className="text-sm font-medium leading-none"
+                        >
+                          Address
                         </label>
                         <input
                           className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          type="email"
-                          defaultValue={booking_provider_email}
-                          disabled
+                          placeholder="Enter your address"
+                          type="text"
+                          autoComplete="off"
+                          name="booking_address"
+                          id="booking_address"
+                          ref={addressRef}
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium leading-none">
-                            Expiry Date
-                          </label>
-                          <input
-                            className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                            placeholder="MM/YY"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium leading-none">
-                            CVV
-                          </label>
-                          <input
-                            className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                            placeholder="Enter your CVV"
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium leading-none">
-                          Billing Address
-                        </label>
-                        <input
-                          className="bg-transparent flex h-10 w-full rounded-md border px-3"
-                          placeholder="Enter your billing address"
-                        />
-                      </div>
-                    </form>
-                  </div>
+                    </div>
+                  </form>
                 </div>
-                <div className="flex items-center lg:p-6 p-2">
-                  <button
-                    onClick={() => {
-                      setOpenModal(false);
-                    }}
-                    className="ring-offset-background focus-visible:ring-ring inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                  >
-                    Conform
-                  </button>
-                </div>
+              </div>
+              <div className="flex items-center lg:p-6 p-2">
+                <button
+                  type="submit"
+                  onClick={handleConfirmBooking}
+                  className="ring-offset-background focus-visible:ring-ring inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-orange-600 px-4 py-2 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Confirm
+                </button>
+              </div>
             </div>
           </main>
         </div>
