@@ -40,10 +40,6 @@ import BookedServices from "../pages/BookedServices";
             element: <AllServices />
         },
         {
-            path: '/services/:id',
-            element: <div>Service</div>
-        },
-        {
             path: '/manage-services',
             element: <PrivaterRoute><ManageServices /></PrivaterRoute>
         },

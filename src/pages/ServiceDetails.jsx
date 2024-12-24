@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookingModal from "../components/others/BookingModal";
+import { Helmet } from "react-helmet-async";
 
 const ServiceDetails = () => {
   const [service, setService] = useState({});
@@ -24,7 +25,10 @@ const ServiceDetails = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">
-        {/* Title Section */}
+      <Helmet>
+        <title>{name || "Service Details"} - TaskBros | Explore More</title>
+      </Helmet>
+      {/* Title Section */}
       <div className="mb-16 text-center">
         <h4 className="flex items-center justify-center gap-3 mb-2">
           <span className="border-t-2 border-gray-300 w-10"></span>
@@ -58,7 +62,7 @@ const ServiceDetails = () => {
           {/* Description */}
           <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
 
-                   {/* Price */}
+          {/* Price */}
           <h3 className="text-xl font-semibold text-orange-600 mb-6">
             Price: ${price}
           </h3>
@@ -68,8 +72,6 @@ const ServiceDetails = () => {
             <span className="text-gray-600 font-medium">Location:</span>
             <span className="text-lg font-semibold text-gray-800">{area}</span>
           </div>
-
- 
 
           {/* Service Provider Information */}
           <div className="flex items-center gap-4">
@@ -88,8 +90,8 @@ const ServiceDetails = () => {
 
       {/* Book Now Button */}
       <div className="text-center">
-      {/* book now modal */}
-      <BookingModal service={service} />
+        {/* book now modal */}
+        <BookingModal service={service} />
       </div>
     </div>
   );

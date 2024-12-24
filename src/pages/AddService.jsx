@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -59,6 +60,9 @@ const AddService = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <Helmet>
+        <title>Add Service - TaskBros | Share Your Expertise</title>
+      </Helmet>
       <div className="w-full max-w-lg bg-white rounded-lg shadow-md p-8">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
           Add New Service

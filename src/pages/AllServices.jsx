@@ -1,19 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ServiceCard from "../components/common/ServiceCard";
+import { Helmet } from "react-helmet-async";
 
 const AllServices = () => {
-    const [allServices,setAllServices] = useState([]);
-    useEffect(()=>{
-        axios.get(`${import.meta.env.VITE_API_URL}/all-services`)
-        .then(res=>{
-            setAllServices(res.data);
-        })
-    },[])
-    console.log('all',allServices)
+  const [allServices, setAllServices] = useState([]);
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/all-services`).then((res) => {
+      setAllServices(res.data);
+    });
+  }, []);
+  console.log("all", allServices);
   return (
     <div className="section-wrap p-4 max-w-7xl mx-auto mt-16">
-        {/* Title Section */}
+      <Helmet>
+        <title>All Services - TaskBros | Browse Services</title>
+      </Helmet>
+      {/* Title Section */}
       <div className="mb-16 text-center">
         <h4 className="flex items-center justify-center gap-3 mb-2">
           <span className="border-t-2 border-gray-300 w-10"></span>
@@ -32,7 +35,9 @@ const AllServices = () => {
 
       {/*services Card section */}
       <div className="space-y-10">
-        {allServices.map((service,idx)=> <ServiceCard key={`${service._id}-${idx}`} service={service} />)}
+        {allServices.map((service, idx) => (
+          <ServiceCard key={`${service._id}-${idx}`} service={service} />
+        ))}
       </div>
     </div>
   );
