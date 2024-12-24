@@ -2,8 +2,14 @@ import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import UpdateServiceModal from "../others/UpdateServiceModal";
+import { useContext } from "react";
+import MyServicesContext from "../../contexts/myservicesContext/MyServicesContext";
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 const ServiceCard = ({ service }) => {
+  const {myServicesState} = useContext(MyServicesContext);
+  const {myServices,setMyServices} = myServicesState;
   const {
     _id,
     description,
@@ -15,6 +21,38 @@ const ServiceCard = ({ service }) => {
     area,
   } = service;
   const location = useLocation();
+
+
+  const handleDeleteService = id =>{
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are going to delete this service!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`${import.meta.env.VITE_API_URL}/delete-service/${id}`)
+        .then(res=>{
+          if(res.data.deletedCount > 0){
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your services has been deleted.",
+              icon: "success"
+            });
+            // update in state
+            const remainingServices = myServices.filter(service=> service._id !== id);
+            setMyServices(remainingServices);
+          }
+        })
+      }
+    });
+    
+
+  }
 
   return (
     <div className="border shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col ">
@@ -76,6 +114,7 @@ const ServiceCard = ({ service }) => {
             <div className="flex justify-between space-x-2">
               <UpdateServiceModal serviceId={_id} />
               <button
+                onClick={(()=>handleDeleteService(_id))}
                 className="bg-[#F97316] hover:bg-orange-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
                 title="Delete Service"
               >
