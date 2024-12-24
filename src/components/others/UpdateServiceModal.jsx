@@ -1,16 +1,26 @@
 import axios from "axios";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
+import MyServicesContext from "../../contexts/myservicesContext/MyServicesContext";
 
-const UpdateServiceModal = ({ service,updateServicesInState }) => {
+const UpdateServiceModal = ({ serviceId}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState(service || {});
-  const { description, imageUrl, name, price, area, _id } = service;
+  const [formData, setFormData] = useState({});
+  const {handleMyServicesState} = useContext(MyServicesContext);
+  const { description, imageUrl, name, price, area, _id } = formData;
+  
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+
+  useEffect(()=>{
+    axios.get(`${import.meta.env.VITE_API_URL}/all-services/${serviceId}`)
+    .then(res=>{
+      setFormData(res.data);
+    })
+  },[serviceId])
 
   useEffect(() => {
     if (isOpen) {
@@ -35,7 +45,7 @@ const UpdateServiceModal = ({ service,updateServicesInState }) => {
       description: formData.description,
       imageUrl: formData.imageUrl,
       name: formData.name,
-      price: formData.price,
+      price: parseFloat(formData.price),
       area: formData.area,
     };
 
@@ -45,6 +55,7 @@ const UpdateServiceModal = ({ service,updateServicesInState }) => {
         if (res.data.modifiedCount > 0) {       
           toast.success("Your Service Updated Successfully!");
           closeModal();
+          handleMyServicesState({_id,...updatedService})
         } else {
           toast.error("Faild to Update your Service.");
         }
@@ -226,8 +237,7 @@ const UpdateServiceModal = ({ service,updateServicesInState }) => {
 };
 
 UpdateServiceModal.propTypes = {
-  service: PropTypes.object.isRequired,
-  updateServicesInState: PropTypes.func.isRequired,
+  serviceId: PropTypes.string.isRequired,
 };
 
 export default UpdateServiceModal;

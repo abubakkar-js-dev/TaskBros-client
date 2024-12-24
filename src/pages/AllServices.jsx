@@ -32,7 +32,7 @@ const AllServices = () => {
 
       {/*services Card section */}
       <div className="space-y-10">
-        {allServices.map(service=> <ServiceCard key={service._id} service={service} />)}
+        {allServices.map((service,idx)=> <ServiceCard key={`${service._id}-${idx}`} service={service} />)}
       </div>
     </div>
   );

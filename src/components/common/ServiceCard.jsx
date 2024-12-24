@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import UpdateServiceModal from "../others/UpdateServiceModal";
 
-const ServiceCard = ({ service,updateServicesInState }) => {
+const ServiceCard = ({ service }) => {
   const {
     _id,
     description,
@@ -51,7 +51,7 @@ const ServiceCard = ({ service,updateServicesInState }) => {
 
           {/* Description */}
           <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-            {description.length > 100
+            {description?.length > 100
               ? `${description.slice(0, 100)}...`
               : description}
           </p>
@@ -74,7 +74,7 @@ const ServiceCard = ({ service,updateServicesInState }) => {
         <div className="mt-auto">
           {location.pathname === "/manage-services" ? (
             <div className="flex justify-between space-x-2">
-              <UpdateServiceModal service={service} updateServicesInState={updateServicesInState} />
+              <UpdateServiceModal serviceId={_id} />
               <button
                 className="bg-[#F97316] hover:bg-orange-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
                 title="Delete Service"
@@ -98,7 +98,6 @@ const ServiceCard = ({ service,updateServicesInState }) => {
 
 ServiceCard.propTypes = {
   service: PropTypes.object.isRequired,
-  updateServicesInState: PropTypes.func.isRequired,
 };
 
 export default ServiceCard;

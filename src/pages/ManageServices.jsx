@@ -1,27 +1,23 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import ServiceCard from "../components/common/ServiceCard";
 import AuthContext from "../contexts/authcontext/AuthContext";
-import { useLocation } from "react-router-dom";
+import MyServicesContext from "../contexts/myservicesContext/MyServicesContext";
+
+
 
 const ManageServices = () => {
-  const [myServices, setMyServices] = useState([]);
+  const {myServicesState} = useContext(MyServicesContext);
+  const {myServices,setMyServices} = myServicesState;
   const { user } = useContext(AuthContext);
-  const { pathname } = useLocation();
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/my-services/${user.email}`)
       .then((res) => {
         setMyServices(res.data);
       });
-  }, [user.email]);
-
-  // updated my services in state
-  const updateServicesInState = (updatedService) => {
-    myServices.map((service) => {
-      service._id === updatedService._id ? updatedService : service;
-    });
-  };
+  }, [setMyServices, user.email]);
 
   return (
     <div className="section-wrap container mx-auto mt-16">
@@ -48,7 +44,6 @@ const ManageServices = () => {
           <ServiceCard
             key={service._id}
             service={service}
-            updateServicesInState={updateServicesInState}
           />
         ))}
       </div>
