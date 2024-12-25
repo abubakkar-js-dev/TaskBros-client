@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import { Helmet } from "react-helmet-async";
+import Toast from "react-hot-toast";
 
 const Login = () => {
   const { loginUser, setUser, loginWithGoogle } = useContext(AuthContext);
@@ -23,7 +24,7 @@ const Login = () => {
         navigate(from || "/");
       })
       .catch((err) => {
-        console.log(err.message);
+        Toast.error(err.code);
       });
   };
 
@@ -35,7 +36,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((err) => {
-        console.log(err.message);
+        Toast.error(err.code);
       });
   };
 
@@ -104,6 +105,7 @@ const Login = () => {
           </div>
 
           <button
+            type="button"
             onClick={handleGoogleLogin}
             className="flex items-center justify-center w-full h-10 rounded border border-gray-300 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >

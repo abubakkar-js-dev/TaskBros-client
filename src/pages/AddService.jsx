@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import axios from "axios";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddService = () => {
   const { user } = useContext(AuthContext);
@@ -13,6 +13,7 @@ const AddService = () => {
     area: "",
     description: "",
   });
+  const axiosInstant = useAxiosSecure();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +38,8 @@ const AddService = () => {
 
     console.log(newService);
     // add service to the database
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/add-service`, newService)
+    axiosInstant
+      .post(`/add-service`, newService)
       .then((res) => {
         if (res.data.insertedId) {
           toast.success("Successfully added your service!");

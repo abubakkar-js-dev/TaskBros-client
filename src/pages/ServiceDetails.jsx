@@ -1,12 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BookingModal from "../components/others/BookingModal";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ServiceDetails = () => {
   const [service, setService] = useState({});
   const { id } = useParams();
+  const axiosInstant = useAxiosSecure();
   const {
     description,
     imageUrl,
@@ -18,10 +19,10 @@ const ServiceDetails = () => {
   } = service;
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/all-services/${id}`)
+    axiosInstant
+      .get(`/all-services/${id}`)
       .then((res) => setService(res.data));
-  }, [id]);
+  }, [axiosInstant, id]);
 
   return (
     <div className="max-w-7xl mx-auto p-6 space-y-8">

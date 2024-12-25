@@ -1,22 +1,23 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
 import ServiceCard from "../components/common/ServiceCard";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import MyServicesContext from "../contexts/myservicesContext/MyServicesContext";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ManageServices = () => {
   const { myServicesState } = useContext(MyServicesContext);
   const { myServices, setMyServices } = myServicesState;
   const { user } = useContext(AuthContext);
+  const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/my-services/${user.email}`)
+    axiosInstant
+      .get(`/my-services/${user.email}`)
       .then((res) => {
         setMyServices(res.data);
       });
-  }, [setMyServices, user.email]);
+  }, [axiosInstant, setMyServices, user.email]);
 
   return (
     <div className="section-wrap container mx-auto mt-16">
@@ -41,11 +42,17 @@ const ManageServices = () => {
       </div>
 
       {/*services Card section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-        {myServices.map((service) => (
-          <ServiceCard key={service._id} service={service} />
-        ))}
-      </div>
+      {myServices.length === 0 ? (
+        <h2 className="text-center mt-20 text-xl lg:text-2xl text-secondary">
+          No Services Found
+        </h2>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {myServices.map((service) => (
+            <ServiceCard key={service._id} service={service} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

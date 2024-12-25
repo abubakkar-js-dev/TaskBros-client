@@ -3,17 +3,19 @@ import { Helmet } from "react-helmet-async";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import axios from "axios";
 import Toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const ServicesToDo = () => {
   const [bookedServices, setBookedServices] = useState([]);
   const { user } = useContext(AuthContext);
+  const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
    
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/booked-by-user?email=${user.email}`)
+    axiosInstant
+      .get(`/booked-by-user?email=${user.email}`)
       .then((res) => setBookedServices(res.data));
-  }, [user.email]);
+  }, [axiosInstant, user.email]);
 
   const handleUpdateStatus = (status, id) => {
     // console.log(id, status);
@@ -133,7 +135,7 @@ const ServicesToDo = () => {
           </table>
         </div>
       ) : (
-        <p className="text-center text-gray-600 mt-10">
+        <p className="text-center  mt-10 text-secondary">
           No services booked yet. Start adding your services to get started!
         </p>
       )}

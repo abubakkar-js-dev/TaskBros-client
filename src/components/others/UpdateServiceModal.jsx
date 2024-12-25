@@ -16,7 +16,9 @@ const UpdateServiceModal = ({ serviceId}) => {
   const closeModal = () => setIsOpen(false);
 
   useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_API_URL}/all-services/${serviceId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/all-services/${serviceId}`,{
+      withCredentials: true
+    })
     .then(res=>{
       setFormData(res.data);
     })

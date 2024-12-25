@@ -1,20 +1,21 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import BookedService from "../components/common/BookedService";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BookedServices = () => {
   const [bookedServices, setBookedServices] = useState([]);
   const { user } = useContext(AuthContext);
+  const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
-    axios
+    axiosInstant
       .get(
-        `${import.meta.env.VITE_API_URL}/booked-services?email=${user.email}`
+        `/booked-services?email=${user.email}`
       )
       .then((res) => setBookedServices(res.data));
-  }, [user.email]);
+  }, [axiosInstant, user.email]);
 
   return (
     <div className="section-wrap container mx-auto mt-20">

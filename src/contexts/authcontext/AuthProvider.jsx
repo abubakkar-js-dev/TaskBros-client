@@ -3,6 +3,7 @@ import AuthContext from './AuthContext';
 import PropTypes from 'prop-types';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../../firebase/firebase.config';
+import axios from 'axios';
 
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
@@ -40,6 +41,25 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
             setUser(currentUser);
+            if(currentUser?.email){
+                const user = {email: currentUser.email};
+                
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`,user,{
+                    withCredentials: true
+                })
+                .then(res=>{
+                    console.log(res.data,"from cookies when login")
+                    setLoading(false);
+                })
+            }else{
+                axios.post(`${import.meta.env.VITE_API_URL}/logOut`,{},{
+                    withCredentials: true
+                })
+                .then(res=>{
+                    console.log('Cookie cleared successfully',res.data);
+                    setLoading(false);
+                })
+            }
             setLoading(false);
         })
 
