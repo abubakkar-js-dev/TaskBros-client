@@ -46,7 +46,7 @@ const HowItWork = () => {
             key={index}
             className="flex flex-col items-center rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-lg"
           >
-            <div className="text-4xl text-blue-500 mb-4">{step.icon}</div>
+            <div className="text-4xl text-primary mb-4">{step.icon}</div>
             <h3 className="text-lg font-semibold text-gray-800">
               {step.title}
             </h3>

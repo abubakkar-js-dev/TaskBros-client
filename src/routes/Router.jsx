@@ -10,6 +10,7 @@ import AllServices from "../pages/AllServices";
 import ManageServices from "../pages/ManageServices";
 import BookedServices from "../pages/BookedServices";
 import ErrorPage from '../pages/ErrorPage'
+import ServicesToDo from "../pages/ServicesToDo";
 
  const router = createBrowserRouter([
     {
@@ -51,7 +52,7 @@ import ErrorPage from '../pages/ErrorPage'
         },
         {
             path: '/service-to-do',
-            element: <div>Service to do</div>
+            element: <PrivaterRoute><ServicesToDo /></PrivaterRoute>
         }
       ]
     },
