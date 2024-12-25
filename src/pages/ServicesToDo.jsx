@@ -2,26 +2,42 @@ import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import axios from "axios";
+import Toast from "react-hot-toast";
 
 const ServicesToDo = () => {
   const [bookedServices, setBookedServices] = useState([]);
   const { user } = useContext(AuthContext);
-  const [status,setStatus] = useState('');
-  console.log(status);
-  
+
   useEffect(() => {
-    // Fetching booked services where the provider is the logged-in user
+   
     axios
-      .get(
-        `${import.meta.env.VITE_API_URL}/booked-by-user?email=${user.email}`
-      )
+      .get(`${import.meta.env.VITE_API_URL}/booked-by-user?email=${user.email}`)
       .then((res) => setBookedServices(res.data));
   }, [user.email]);
 
+  const handleUpdateStatus = (status, id) => {
+    // console.log(id, status);
+    axios
+      .patch(`${import.meta.env.VITE_API_URL}/update-booking-status/${id}`, {
+        status,
+      })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Toast.success("Successfully updated your service Status!");
 
-  const handleUpdateStatus = (status,id)=>{
-    console.log(id,status);
-  }
+          // update in state
+          setBookedServices((prevServices) =>
+            prevServices.map((service) =>
+              service._id === id
+                ? { ...service, service_status: status }
+                : service
+            )
+          );
+        } else {
+          Toast.error("Failed to updated status");
+        }
+      });
+  };
 
   return (
     <div className="mt-16 lg:mt-20 container mx-auto section-wrap">
@@ -49,9 +65,13 @@ const ServicesToDo = () => {
           <table className="table-auto w-full border-collapse border border-gray-300">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border border-gray-300 px-4 py-2">Service Name</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Service Name
+                </th>
                 <th className="border border-gray-300 px-4 py-2">Booked By</th>
-                <th className="border border-gray-300 px-4 py-2">Booking Date</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Booking Date
+                </th>
                 <th className="border border-gray-300 px-4 py-2">Address</th>
                 <th className="border border-gray-300 px-4 py-2">Status</th>
                 <th className="border border-gray-300 px-4 py-2">Action</th>
@@ -74,7 +94,9 @@ const ServicesToDo = () => {
                     {service.bookingInfo.booking_person_name}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {new Date(service.bookingInfo.booking_date).toLocaleDateString()}
+                    {new Date(
+                      service.bookingInfo.booking_date
+                    ).toLocaleDateString()}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {service.bookingInfo.booking_address || "Unknown"}
@@ -94,9 +116,11 @@ const ServicesToDo = () => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     <select
-                    defaultValue={service.service_status || "Pending"}                      
+                      value={service.service_status}
                       className="border border-gray-300 rounded px-2 py-1"
-                      onChange={(e)=> handleUpdateStatus(e.target.value,service._id)}
+                      onChange={(e) =>
+                        handleUpdateStatus(e.target.value, service._id)
+                      }
                     >
                       <option value="pending">Pending</option>
                       <option value="working">Working</option>

@@ -25,7 +25,7 @@ const AllServices = () => {
           </span>
           <span className="border-t-2 border-gray-300 w-10"></span>
         </h4>
-        <h2 className="text-gray-900 text-4xl font-semibold leading-snug">
+        <h2 className="text-gray-900 text-2xl lg:text-3xl font-semibold leading-snug">
           Explore Our Available Services
         </h2>
         <p className="text-lg text-gray-600 mt-3">
