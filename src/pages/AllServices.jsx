@@ -9,18 +9,12 @@ const AllServices = () => {
   console.log(search);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/all-services`).then((res) => {
-      setAllServices(res.data);
-    });
-  }, [search]);
-
-  const handleSearch = (e)=>{
-    e.preventDefault();
     axios.get(`${import.meta.env.VITE_API_URL}/all-services?search=${search}`)
     .then(res=>{
       setAllServices(res.data);
     })
-  }
+  }, [search]);
+
   return (
     <div className="section-wrap p-4 max-w-7xl mx-auto mt-16">
       <Helmet>
@@ -43,9 +37,9 @@ const AllServices = () => {
         </p>
       </div>
 
-      {/*services Card section */}
-      <div className="space-y-10">
-        <div className="max-w-md mx-auto">
+      {/* Search BOx */}
+
+      <div className="max-w-md mx-auto mb-10">
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only"
@@ -78,20 +72,23 @@ const AllServices = () => {
               placeholder="Search Services..."
               required
             />
-            <button
-              onClick={handleSearch}
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2  "
-            >
-              Search
-            </button>
           </div>
         </div>
 
-        {allServices.map((service, idx) => (
-          <ServiceCard key={`${service._id}-${idx}`} service={service} />
-        ))}
-      </div>
+      {/*services Card section */}
+      {
+        allServices.length > 0 ? (
+          <div className="space-y-10">
+          {allServices.map((service, idx) => (
+            <ServiceCard key={`${service._id}-${idx}`} service={service} />
+          ))}
+        </div>
+        ):(
+          <div className="text-center min-h-48 flex  justify-center items-center">
+            <h2 className="text-lg md:text-xl text-secondary/80">No Services Found.</h2>
+          </div>
+        )
+      }
     </div>
   );
 };
