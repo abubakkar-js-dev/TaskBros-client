@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Hero from "../components/others/Hero";
 import PopularServices from "../components/others/PopularServices";
+import FeaturedServices from "../components/others/FeaturedService";
+import HowItWork from "../components/others/HowItWork";
+import Testimonials from "../components/others/Testimonials";
 
 const Home = () => {
   return (
@@ -12,6 +15,12 @@ const Home = () => {
       <Hero />
       {/* Popular services section */}
       <PopularServices />
+      {/* featured services */}
+      <FeaturedServices />
+      {/* Testimonial */}
+      <Testimonials />
+      {/* how it Works */}
+      <HowItWork />
     </div>
   );
 };

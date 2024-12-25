@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
-import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import logoNav from "../../assets/images/logo2.png";
 import AuthContext from "../../contexts/authcontext/AuthContext";
 
 const Navbar = () => {
-  const {user,logOutUser} = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
   const [dropDownState, setDropDownState] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
@@ -19,7 +18,6 @@ const Navbar = () => {
   // for mobile dashboard dropdown menu
   const [dropDownDashMobileState, setDropDownDashMobileState] = useState(false);
   const mobileDropdwnDashRef = useRef();
-  
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -30,8 +28,7 @@ const Navbar = () => {
     // document.addEventListener("mousedown", closeDropDown);
     return () => {
       document.removeEventListener("mousedown", closeDropDown);
-    }
-
+    };
   }, []);
 
   useEffect(() => {
@@ -55,20 +52,23 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-    logOutUser().then(()=>{
-      console.log('User logged out successfully');
-    })
-    .catch(err =>{
-      console.log(err.message);
-    })
+    logOutUser()
+      .then(() => {
+        console.log("User logged out successfully");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
-
 
   return (
     <nav className="relative flex items-center justify-between bg-primary px-4 py-2 text-white pt-4 z-50">
       {/* Left Section: Logo and Website Name */}
       <div className="flex items-center gap-3">
-        <Link to="/" className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex items-center gap-2">
+        <Link
+          to="/"
+          className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110 flex items-center gap-2"
+        >
           <img
             className="w-10 h-10 bg-white rounded-full object-cover"
             src={logoNav}
@@ -202,18 +202,43 @@ const Navbar = () => {
 
       {/* Right Section: Dark/Light Mode Toggle & Login/Logout */}
       <div className="flex items-center gap-4">
-        <button
-          onClick={toggleDarkMode}
-          className="rounded-full p-2 text-white hover:bg-secondary/60 bg-gray-800/50"
-        >
-          {isDarkMode ? <MdLightMode size={20} /> : <MdDarkMode size={20} />}
-        </button>
+        <div className="flex items-center justify-center">
+          <div className="flex items-center">
+            <span className="mr-2 text-sm text-gray-600 dark:text-gray-300">
+              {isDarkMode ? "Dark" : "Light"}
+            </span>
+            <button
+              onClick={toggleDarkMode}
+              className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors duration-300 ${
+                isDarkMode ? "bg-gray-700" : "bg-gray-200"
+              }`}
+            >
+              <span
+                className={`absolute left-1 top-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-white transition-transform duration-300 ${
+                  isDarkMode ? "translate-x-6" : "translate-x-0"
+                }`}
+              >
+                {isDarkMode ? (
+                  <FaMoon className="text-gray-700" />
+                ) : (
+                  <FaSun className="text-yellow-500" />
+                )}
+              </span>
+            </button>
+          </div>
+        </div>
         {user && user?.email ? (
-          <button onClick={handleLogOut} className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
+          <button
+            onClick={handleLogOut}
+            className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90"
+          >
             LogOut
           </button>
         ) : (
-          <Link to='/login' className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90">
+          <Link
+            to="/login"
+            className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90"
+          >
             Login
           </Link>
         )}
@@ -263,10 +288,10 @@ const Navbar = () => {
           {user && (
             <li className="relative" ref={mobileDropdwnDashRef}>
               <button
-                onClick={() =>{
+                onClick={() => {
                   // e.stopPropagation()
-                  setDropDownDashMobileState(!dropDownDashMobileState)
-                } }
+                  setDropDownDashMobileState(!dropDownDashMobileState);
+                }}
                 className="flex items-center gap-2 px-6 py-2 cursor-pointer text-white"
               >
                 Dashboard

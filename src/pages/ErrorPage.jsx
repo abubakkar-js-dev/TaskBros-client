@@ -1,8 +1,8 @@
-import React from "react";
 import { FaHome } from "react-icons/fa";
 import Lottie from "react-lottie";
 import { useNavigate } from "react-router-dom";
 import loginLotte from "../assets/lottie/login-lottie.json";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   const navigate = useNavigate(); // Use React Router's navigate function
@@ -22,6 +22,9 @@ const ErrorPage = () => {
 
   return (
     <div className="grid h-screen place-content-center bg-gray-100 px-4">
+        <Helmet>
+            <title>404 Not found - TaskBros | back to home</title>
+        </Helmet>
       <div className="text-center">
         <Lottie options={defaultOptions} height={300} width={300} />
         <h2 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -32,7 +35,7 @@ const ErrorPage = () => {
         </p>
         <button
           onClick={handleGoHome}
-          className="mt-6 inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="mt-6 inline-flex items-center rounded-lg bg-secondary px-4 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
         >
           <FaHome className="mr-2" />
           Back to Home

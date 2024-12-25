@@ -5,32 +5,32 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-800">
-      <div className="container mx-auto py-12 px-8 md:px-16 flex flex-col items-center justify-between gap-10 md:flex-row md:gap-20 border-b border-gray-300 bg-gray-50 rounded-t-2xl">
-        <div className="flex flex-col items-center gap-6 md:items-start">
+      <div className="container max-w-7x mx-auto py-12 px-8 md:px-16 flex flex-col items-center justify-between gap-10 md:flex-row md:gap-20 border-b border-gray-300 bg-gray-50 rounded-t-3xl">
+        <div className="flex flex-co  items-center gap-6">
           <img
             src={logoFooter}
             alt="TaskBros Logo"
-            className="h-16 w-auto bg-white p-2 rounded-full shadow-md"
+            className="w-16  bg-primary/20 p-2 rounded-full shadow-md"
           />
-          <h5 className="text-3xl font-semibold text-gray-800">TaskBros</h5>
+          <h5 className="text-2xl font-semibold text-primary">TaskBros</h5>
         </div>
 
         <div className="flex gap-6 justify-center text-lg ">
           <Link
             to="/"
-            className="text-base text-gray-600 hover:text-gray-800 transform hover:scale-110 transition duration-200"
+            className="text-base text-gray-600 hover:text-primary transform hover:scale-110 transition duration-200"
           >
             Home
           </Link>
           <Link
             to="/all-services"
-            className="text-base text-gray-600 hover:text-gray-800 transform hover:scale-110 transition duration-200"
+            className="text-base text-gray-600 hover:text-primary transform hover:scale-110 transition duration-200"
           >
             Services
           </Link>
           <Link
             to="/add-service"
-            className="text-base text-gray-600 hover:text-gray-800 transform hover:scale-110 transition duration-200"
+            className="text-base text-gray-600 hover:text-primary transform hover:scale-110 transition duration-200"
           >
             Add service
           </Link>
