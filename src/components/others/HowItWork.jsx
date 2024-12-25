@@ -31,26 +31,30 @@ const HowItWork = () => {
         <h4 className="flex items-center justify-center gap-3 mb-2">
           <span className="border-t-2 border-gray-300 w-10"></span>
           <span className="text-gray-500 uppercase tracking-wide text-sm">
-          How It Works
+            How It Works
           </span>
           <span className="border-t-2 border-gray-300 w-10"></span>
         </h4>
         <h2 className="section-title text-gray-900">
-        Simple steps to get started effortlessly
+          Simple steps to get started effortlessly
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto px-6 lg:px-8 py-12 hover:cursor-pointer">
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col items-center rounded-lg border border-gray-200 p-6 text-center shadow-sm hover:shadow-lg"
+            className="flex flex-col items-center rounded-lg bg-white border border-gray-200 p-8 text-center shadow-md hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="text-4xl text-primary mb-4">{step.icon}</div>
-            <h3 className="text-lg font-semibold text-gray-800">
+            <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-6 text-4xl">
+              {step.icon}
+            </div>
+            <h3 className="text-lg font-semibold text-gray-800 leading-tight">
               {step.title}
             </h3>
-            <p className="mt-2 text-sm text-gray-600">{step.description}</p>
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+              {step.description}
+            </p>
           </div>
         ))}
       </div>
