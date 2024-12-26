@@ -39,34 +39,41 @@ const AuthProvider = ({children}) => {
 
 
     useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
-            setUser(currentUser);
-            if(currentUser?.email){
-                const user = {email: currentUser.email};
-                
-                axios.post(`${import.meta.env.VITE_API_URL}/jwt`,user,{
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setLoading(true); // Set loading true when the auth state changes
+            
+            if (currentUser?.email) {
+                const user = { email: currentUser.email };
+    
+                axios.post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
                     withCredentials: true
                 })
-                .then(()=>{
-                    // console.log("from cookies when login")
-                    setLoading(false);
+                .then(() => {
+                    setUser(currentUser);
+                    setLoading(false); 
                 })
-            }else{
-                axios.post(`${import.meta.env.VITE_API_URL}/logOut`,{},{
+                .catch(() => {
+                    setLoading(false); 
+                });
+            } else {
+                setUser(currentUser); 
+                axios.post(`${import.meta.env.VITE_API_URL}/logOut`, {}, {
                     withCredentials: true
                 })
-                .then(()=>{
-                    // console.log('Cookie cleared successfully');
-                    setLoading(false);
+                .then(() => {
+                    setLoading(false); 
                 })
+                .catch(() => {
+                    setLoading(false); 
+                });
             }
-            setLoading(false);
-        })
-
-        return ()=>{
+        });
+    
+        return () => {
             unsubscribe();
-        }
-    },[])
+        };
+    }, []);
+    
 
 
 
