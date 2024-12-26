@@ -4,8 +4,16 @@ import PopularServices from "../components/others/PopularServices";
 import FeaturedServices from "../components/others/FeaturedService";
 import HowItWork from "../components/others/HowItWork";
 import Testimonials from "../components/others/Testimonials";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(()=>{
+    AOS.init({
+      duration: 1000,
+    })
+  },[])
   return (
     <div>
       <Helmet>

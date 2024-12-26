@@ -42,7 +42,7 @@ const PopularServices = () => {
   return (
     <div className={`section-wrap container mx-auto p-4`}>
       {/* Title Section */}
-      <div className="mb-24">
+      <div className="mb-24" data-aos="fade-right">
         <h4 className="flex items-center gap-3 mb-2">
           <span className="border-t-2 border-gray-300 w-10"></span>
           <span className="text-gray-500 uppercase tracking-wide text-sm">

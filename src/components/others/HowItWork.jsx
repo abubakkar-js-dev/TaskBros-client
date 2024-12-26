@@ -29,7 +29,7 @@ const HowItWork = () => {
 
   return (
     <div className="section-wrap container mx-auto mb-24 lg:mb-[120px]">
-      <div className="mb-24 mx-auto text-center flex flex-col justify-center items-center">
+      <div data-aos="fade-down" className="mb-24 mx-auto text-center flex flex-col justify-center items-center">
         {/* title section */}
         <h4 className="flex items-center justify-center gap-3 mb-2">
           <span className="border-t-2 border-gray-300 w-10"></span>
@@ -46,6 +46,9 @@ const HowItWork = () => {
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto px-6 lg:px-8 py-12 hover:cursor-pointer">
         {steps.map((step, index) => (
           <div
+          data-aos="flip-right"
+          data-aos-delay="300"
+          data-aos-duration="1500"
             key={index}
             className={`flex flex-col items-center rounded-lg border border-gray-200 p-8 text-center shadow-md hover:shadow-xl transition-shadow duration-300 ${
               theme === "dark" ? "bg-gray-800 text-white border-gray-700" : ""

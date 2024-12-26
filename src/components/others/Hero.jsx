@@ -20,9 +20,7 @@ const Hero = () => {
 
   return (
     <div
-      className={`section-wrap ${
-        theme === "dark" ? "bg-gray-900 text-white" : ""
-      }`}
+      className={`section-wrap ${theme === "dark" ? "bg-gray-900 text-white" : ""}`}
     >
       <section
         className={`relative ${
@@ -42,6 +40,7 @@ const Hero = () => {
         <div className="relative mx-auto container px-4 py-32 sm:px-6 lg:flex justify-between lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-2xl mb-20">
             <h1
+              data-aos="fade-up"
               className={`text-3xl font-extrabold sm:text-5xl ${
                 theme === "dark" ? "text-white" : "text-white"
               }`}
@@ -53,6 +52,8 @@ const Hero = () => {
             </h1>
 
             <p
+              data-aos="fade-up"
+              data-aos-delay="200"
               className={`mt-4 max-w-lg sm:text-xl/relaxed ${
                 theme === "dark" ? "text-gray-300" : "text-gray-200"
               }`}
@@ -64,7 +65,9 @@ const Hero = () => {
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <Link
-                to='/all-services'
+                to="/all-services"
+                data-aos="fade-up"
+                data-aos-delay="400"
                 className={`block w-full rounded bg-secondary px-12 py-3 text-sm font-medium text-white shadow hover:bg-orange-500 focus:outline-none focus:ring active:bg-orange-500 sm:w-auto ${
                   theme === "dark" ? "bg-orange-600" : ""
                 }`}
@@ -74,6 +77,8 @@ const Hero = () => {
 
               <a
                 href="#"
+                data-aos="fade-up"
+                data-aos-delay="600"
                 className={`block w-full rounded bg-white px-12 py-3 text-sm font-medium text-secondary shadow hover:text-orange-500 focus:outline-none focus:ring active:text-orange-500 sm:w-auto ${
                   theme === "dark" ? "!bg-gray-700 text-white" : ""
                 }`}
@@ -82,10 +87,14 @@ const Hero = () => {
               </a>
             </div>
           </div>
+
           {theme === "dark" && (
             <img
+              data-aos="fade-right"
+              data-aos-delay="800"
               className="max-w-[720px] w-full object-cover rounded-2xl"
               src="https://i.ibb.co.com/cvxsbbg/photo-1604014237800-1c9102c219da-ixlib-rb-1-2.jpg"
+              alt="Hero"
             />
           )}
         </div>

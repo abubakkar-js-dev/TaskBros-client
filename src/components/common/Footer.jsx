@@ -13,6 +13,8 @@ const Footer = () => {
       } text-gray-800`}
     >
       <div
+        data-aos="fade-in"
+        data-aos-duration="1200"
         className={`container max-w-7x mx-auto py-12 px-8 md:px-16 flex flex-col items-center justify-between gap-10 md:flex-row md:gap-20 border-b ${
           theme === "dark" && "bg-gray-800 border-gray-700"
         } border-gray-300 bg-gray-50 rounded-t-3xl`}

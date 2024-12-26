@@ -79,7 +79,7 @@ const Testimonials = () => {
       className={`section-wrap ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
     >
       <div className="mx-auto container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="mb-24">
+        <div data-aos="fade-right" className="mb-24">
           {/* title section */}
           <h4
             className={`flex items-center gap-3 mb-2 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
@@ -95,8 +95,8 @@ const Testimonials = () => {
           <h2 className="section-title">Read trusted reviews from our customers</h2>
         </div>
 
-        <div className="mt-8 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div data-aos="zoom-in" className="mt-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentReviews.map((review, index) => (
               <blockquote
                 key={index}

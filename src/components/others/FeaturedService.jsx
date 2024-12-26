@@ -30,7 +30,7 @@ const FeaturedServices = () => {
         theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"
       }`}
     >
-      <div className="mb-24 mx-auto text-center flex flex-col justify-center items-center">
+      <div data-aos="fade-up" className="mb-24 mx-auto text-center flex flex-col justify-center items-center">
         {/* Title section */}
         <h4
           className={`flex items-center justify-center gap-3 mb-2 ${
@@ -54,7 +54,7 @@ const FeaturedServices = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 text-center max-w-5xl mx-auto">
+      <div data-aos="fade-down" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 text-center max-w-5xl mx-auto">
         {services.map((service) => (
           <div
             key={service.id}
