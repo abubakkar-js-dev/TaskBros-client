@@ -68,11 +68,12 @@ const ServiceCard = ({ service }) => {
     });
   }, []);
 
+  const aosAttributes = location.pathname !== '/manage-services' ? 
+  { 'data-aos': 'zoom-in', 'data-aos-delay': '100', 'data-aos-duration': '1000' } : {};
+
   return (
     <div
-      data-aos="zoom-in"
-      data-aos-delay="100"
-      data-aos-duration="1000"
+      {...aosAttributes}
       className={`border shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col ${
         theme === "dark"
           ? "bg-card text-white border-gray-600"
