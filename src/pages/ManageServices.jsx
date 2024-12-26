@@ -5,12 +5,14 @@ import MyServicesContext from "../contexts/myservicesContext/MyServicesContext";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loading from "../components/common/Loading";
+import ThemeContext from "../contexts/ThemeContext/ThemeContext";
 
 const ManageServices = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { myServicesState } = useContext(MyServicesContext);
   const { myServices, setMyServices } = myServicesState;
   const { user } = useContext(AuthContext);
+  const {theme} = useContext(ThemeContext);
   const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const ManageServices = () => {
           </span>
           <span className="border-t-2 border-gray-300 w-10"></span>
         </h4>
-        <h2 className="text-gray-900 text-2xl lg:text-3xl font-semibold leading-snug">
+        <h2 className={`${theme === 'dark' ? 'text-white':'text-gray-900'} text-2xl lg:text-3xl font-semibold leading-snug`}>
           Control and Customize Your Services
         </h2>
         <p className="text-lg text-gray-600 mt-3">

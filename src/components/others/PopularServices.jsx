@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ServiceCard from "../common/ServiceCard";
 import Loading from "../common/Loading";
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const PopularServices = () => {
   const [popularServices, setPopularServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); // For error handling
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     setIsLoading(true); // Start loading
@@ -38,7 +40,7 @@ const PopularServices = () => {
   }
 
   return (
-    <div className="section-wrap container mx-auto p-4">
+    <div className={`section-wrap container mx-auto p-4`}>
       {/* Title Section */}
       <div className="mb-24">
         <h4 className="flex items-center gap-3 mb-2">
@@ -47,7 +49,7 @@ const PopularServices = () => {
             Popular now
           </span>
         </h4>
-        <h2 className="section-title text-gray-900">
+        <h2 className={`section-title ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
           Discover the most sought-after services
         </h2>
       </div>

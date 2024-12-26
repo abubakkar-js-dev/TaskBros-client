@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // React Icons
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const Testimonials = () => {
+  const { theme } = useContext(ThemeContext);
   const clientReviews = [
     {
       name: "John Doe",
@@ -73,27 +75,32 @@ const Testimonials = () => {
   );
 
   return (
-    <section className="bg-white section-wrap">
+    <section
+      className={`section-wrap ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
+    >
       <div className="mx-auto container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mb-24">
-        {/* title section */}
-        <h4 className="flex items-center gap-3 mb-2">
-          <span className="border-t-2 border-gray-300 w-10"></span>
-          <span className="text-gray-500 uppercase tracking-wide text-sm">
-           Testimonials
-          </span>
-        </h4>
-        <h2 className="section-title text-gray-900">
-        Read trusted reviews from our customers
-        </h2>
-      </div>
+        <div className="mb-24">
+          {/* title section */}
+          <h4
+            className={`flex items-center gap-3 mb-2 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+          >
+            <span
+              className={`border-t-2 ${theme === "dark" ? "border-gray-600" : "border-gray-300"} w-10`}
+            ></span>
+            <span className="uppercase tracking-wide text-sm">Testimonials</span>
+            <span
+              className={`border-t-2 ${theme === "dark" ? "border-gray-600" : "border-gray-300"} w-10`}
+            ></span>
+          </h4>
+          <h2 className="section-title">Read trusted reviews from our customers</h2>
+        </div>
 
         <div className="mt-8 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {currentReviews.map((review, index) => (
               <blockquote
                 key={index}
-                className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8"
+                className={`rounded-lg p-6 shadow-sm sm:p-8 ${theme === "dark" ? "bg-gray-700" : "bg-gray-50"}`}
               >
                 <div className="flex items-center gap-4">
                   <img
@@ -119,12 +126,12 @@ const Testimonials = () => {
                         </svg>
                       ))}
                     </div>
-                    <p className="mt-0.5 text-lg font-medium text-gray-900">
-                      {review.name}
-                    </p>
+                    <p className="mt-0.5 text-lg font-medium">{review.name}</p>
                   </div>
                 </div>
-                <p className="mt-4 text-gray-700">{review.description}</p>
+                <p className={`mt-4 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
+                  {review.description}
+                </p>
               </blockquote>
             ))}
           </div>

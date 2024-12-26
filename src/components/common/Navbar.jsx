@@ -4,13 +4,14 @@ import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import logoNav from "../../assets/images/logo2.png";
 import AuthContext from "../../contexts/authcontext/AuthContext";
 import toast from 'react-hot-toast';
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const [dropDownState, setDropDownState] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const dropDownMenuRef = useRef();
   const location = useLocation();
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   // State and ref for the dashboard dropdown menu
   const [dropDownDashState, setDropDownDashState] = useState(false);
@@ -47,10 +48,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
-  };
 
   const handleLogOut = () => {
     logOutUser()
@@ -206,20 +203,20 @@ const Navbar = () => {
         <div className="flex items-center justify-center">
           <div className="flex items-center">
             <span className="mr-2 text-sm text-gray-600 dark:text-gray-300">
-              {isDarkMode ? "Dark" : "Light"}
+              {theme === 'dark' ? "Dark" : "Light"}
             </span>
             <button
-              onClick={toggleDarkMode}
+              onClick={toggleTheme}
               className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors duration-300 ${
-                isDarkMode ? "bg-gray-700" : "bg-gray-200"
+                theme === 'dark' ? "bg-gray-700" : "bg-gray-200"
               }`}
             >
               <span
                 className={`absolute left-1 top-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-white transition-transform duration-300 ${
-                  isDarkMode ? "translate-x-6" : "translate-x-0"
+                  theme === 'dark' ? "translate-x-6" : "translate-x-0"
                 }`}
               >
-                {isDarkMode ? (
+                {theme === 'dark' ? (
                   <FaMoon className="text-gray-700" />
                 ) : (
                   <FaSun className="text-yellow-500" />

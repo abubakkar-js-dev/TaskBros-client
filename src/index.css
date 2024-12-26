@@ -30,3 +30,60 @@
 html{
     scroll-behavior: smooth;
 }
+
+
+body.dark {
+    background-color: #111827;
+    color: #E5E7EB;
+  }
+  
+  .dark .bg-primary {
+    background-color: #1E3A8A; 
+  }
+  
+  .dark .bg-secondary {
+    background-color:  #d66d04 !important;
+  }
+  
+  .dark .text-primary {
+    color: #E5E7EB; 
+  }
+  
+  .dark .text-muted {
+    color: #9CA3AF;
+  }
+  
+  .dark .bg-card {
+    background-color: #1F2937;
+  }
+  
+  .dark .border-card {
+    border-color: #2D3748;
+  }
+  
+  .dark .btn-primary {
+    background-color: #2563EB;
+    color: #FFFFFF;
+  }
+  
+  .dark .btn-primary:hover {
+    background-color: #1D4ED8; 
+  }
+  
+  .dark .btn-secondary {
+    background-color: #FB923C; 
+    color: #FFFFFF;
+  }
+  
+  .dark .btn-secondary:hover {
+    background-color: #F97316;
+  }
+  
+  .dark .link {
+    color: #3B82F6;
+  }
+  
+  .dark .link:hover {
+    color: #2563EB;
+  }
+  

@@ -4,25 +4,26 @@ import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import MyServicesContext from "../../contexts/myservicesContext/MyServicesContext";
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const UpdateServiceModal = ({ serviceId}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({});
-  const {handleMyServicesState} = useContext(MyServicesContext);
+  const { handleMyServicesState } = useContext(MyServicesContext);
+  const {theme} = useContext(ThemeContext);
   const { description, imageUrl, name, price, area, _id } = formData;
-  
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  useEffect(()=>{
-    axios.get(`${import.meta.env.VITE_API_URL}/all-services/${serviceId}`,{
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/all-services/${serviceId}`, {
       withCredentials: true
     })
-    .then(res=>{
-      setFormData(res.data);
-    })
-  },[serviceId])
+      .then(res => {
+        setFormData(res.data);
+      });
+  }, [serviceId]);
 
   useEffect(() => {
     if (isOpen) {
@@ -54,15 +55,32 @@ const UpdateServiceModal = ({ serviceId}) => {
     axios
       .patch(`${import.meta.env.VITE_API_URL}/update-service/${_id}`, updatedService)
       .then((res) => {
-        if (res.data.modifiedCount > 0) {       
+        if (res.data.modifiedCount > 0) {
           toast.success("Your Service Updated Successfully!");
           closeModal();
-          handleMyServicesState({_id,...updatedService})
+          handleMyServicesState({ _id, ...updatedService });
         } else {
-          toast.error("Faild to Update your Service.");
+          toast.error("Failed to Update your Service.");
         }
       });
   };
+
+  const modalClasses = theme === "dark" 
+    ? "fixed inset-0 bg-black/80 z-50 flex items-center justify-center" 
+    : "fixed inset-0 bg-black/50 z-50 flex items-center justify-center";
+  
+  const modalContentClasses = theme === "dark"
+    ? "bg-gray-800 w-full max-w-lg rounded-lg shadow-lg p-6"
+    : "bg-white w-full max-w-lg rounded-lg shadow-lg p-6";
+  
+  const textClasses = theme === "dark" ? "text-white" : "text-gray-800";
+  const inputClasses = theme === "dark" 
+    ? "w-full px-4 py-2 border border-gray-700 text-white bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    : "w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
+
+  const buttonClasses = theme === "dark"
+    ? "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+    : "px-4 py-2 bg-[#4A90E2] text-white rounded-lg hover:bg-blue-600 transition";
 
   return (
     <div>
@@ -77,20 +95,12 @@ const UpdateServiceModal = ({ serviceId}) => {
 
       {/* Modal */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-        >
+        <div className={modalClasses} role="dialog" aria-modal="true" aria-labelledby="modal-title">
           {/* Modal Content */}
-          <div className="bg-white w-full max-w-lg rounded-lg shadow-lg p-6">
+          <div className={modalContentClasses}>
             {/* Modal Header */}
             <div className="flex justify-between items-center border-b pb-3">
-              <h2
-                id="modal-title"
-                className="text-lg font-semibold text-gray-800"
-              >
+              <h2 id="modal-title" className={`text-lg font-semibold ${textClasses}`}>
                 Update Service
               </h2>
               <button
@@ -98,19 +108,8 @@ const UpdateServiceModal = ({ serviceId}) => {
                 className="text-gray-500 hover:text-gray-700 transition"
                 aria-label="Close"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
@@ -118,31 +117,21 @@ const UpdateServiceModal = ({ serviceId}) => {
             {/* Modal Body */}
             <form onSubmit={handleSubmit} className="py-4">
               <div className="mb-4">
-                <label
-                  htmlFor="imageUrl"
-                  className="block text-gray-600 font-medium mb-2"
-                >
-                  Service Image URL
-                </label>
+                <label htmlFor="imageUrl" className={`block ${textClasses} font-medium mb-2`}>Service Image URL</label>
                 <input
                   type="text"
                   id="imageUrl"
                   name="imageUrl"
                   defaultValue={imageUrl || ""}
                   onChange={handleChange}
-                  placeholder="Enter service name"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter service image URL"
+                  className={inputClasses}
                   required
                   autoComplete="off"
                 />
               </div>
               <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-gray-600 font-medium mb-2"
-                >
-                  Service Name
-                </label>
+                <label htmlFor="name" className={`block ${textClasses} font-medium mb-2`}>Service Name</label>
                 <input
                   type="text"
                   id="name"
@@ -150,19 +139,14 @@ const UpdateServiceModal = ({ serviceId}) => {
                   defaultValue={name || ""}
                   onChange={handleChange}
                   placeholder="Enter service name"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={inputClasses}
                   required
                   autoComplete="off"
                 />
               </div>
 
               <div className="mb-4">
-                <label
-                  htmlFor="price"
-                  className="block text-gray-600 font-medium mb-2"
-                >
-                  Price
-                </label>
+                <label htmlFor="price" className={`block ${textClasses} font-medium mb-2`}>Price</label>
                 <input
                   type="number"
                   id="price"
@@ -170,46 +154,36 @@ const UpdateServiceModal = ({ serviceId}) => {
                   defaultValue={price || ""}
                   onChange={handleChange}
                   placeholder="Enter price"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={inputClasses}
                   required
                   autoComplete="off"
                 />
               </div>
 
               <div className="mb-4">
-                <label
-                  htmlFor="area"
-                  className="block text-gray-600 font-medium mb-2"
-                >
-                  Area
-                </label>
+                <label htmlFor="area" className={`block ${textClasses} font-medium mb-2`}>Area</label>
                 <input
                   type="text"
                   id="area"
                   name="area"
                   defaultValue={area || ""}
                   onChange={handleChange}
-                  placeholder="Enter price"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter area"
+                  className={inputClasses}
                   required
                   autoComplete="off"
                 />
               </div>
 
               <div className="mb-4">
-                <label
-                  htmlFor="description"
-                  className="block text-gray-600 font-medium mb-2"
-                >
-                  Description
-                </label>
+                <label htmlFor="description" className={`block ${textClasses} font-medium mb-2`}>Description</label>
                 <textarea
                   id="description"
                   name="description"
                   defaultValue={description || ""}
                   onChange={handleChange}
                   placeholder="Enter description"
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`${inputClasses} resize-none`}
                   rows="4"
                   autoComplete="off"
                 />
@@ -225,7 +199,7 @@ const UpdateServiceModal = ({ serviceId}) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#4A90E2] text-white rounded-lg hover:bg-blue-600 transition"
+                  className={buttonClasses}
                 >
                   Save Changes
                 </button>

@@ -1,6 +1,11 @@
-const Loading = () => {
+import PropTypes from "prop-types";
+import { useContext } from "react";
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
+
+const Loading = ({className=""}) => {
+  const {theme} = useContext(ThemeContext);
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-4rem)]">
+    <div className={`flex justify-center items-center min-h-[calc(100vh-4rem)] ${className} ${theme==='dark'&&'bg-gray-900'}`}>
       <div className="w-10 h-10">
         <div className="grid grid-cols-2 justify-center items-center gap-2 rounded-full">
           <span className="h-5 w-5 rounded-tl-full bg-primary animate-[ping_1.4s_linear_infinite]"></span>{" "}
@@ -12,5 +17,9 @@ const Loading = () => {
     </div>
   );
 };
+
+Loading.propTypes = {
+  className: PropTypes.string,
+}
 
 export default Loading;

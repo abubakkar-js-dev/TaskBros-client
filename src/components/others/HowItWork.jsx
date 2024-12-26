@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { FaUser, FaSearch, FaHandshake, FaSmile } from "react-icons/fa";
+import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const HowItWork = () => {
+  const { theme } = useContext(ThemeContext);
   const steps = [
     {
       icon: <FaUser />,
@@ -35,7 +38,7 @@ const HowItWork = () => {
           </span>
           <span className="border-t-2 border-gray-300 w-10"></span>
         </h4>
-        <h2 className="section-title text-gray-900">
+        <h2 className={` section-title ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
           Simple steps to get started effortlessly
         </h2>
       </div>
@@ -44,15 +47,17 @@ const HowItWork = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col items-center rounded-lg bg-white border border-gray-200 p-8 text-center shadow-md hover:shadow-xl transition-shadow duration-300"
+            className={`flex flex-col items-center rounded-lg border border-gray-200 p-8 text-center shadow-md hover:shadow-xl transition-shadow duration-300 ${
+              theme === "dark" ? "bg-gray-800 text-white border-gray-700" : ""
+            }`}
           >
             <div className="flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-6 text-4xl">
               {step.icon}
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 leading-tight">
+            <h3 className="text-lg font-semibold leading-tight">
               {step.title}
             </h3>
-            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+            <p className={`mt-4 text-sm ${theme==='dark'?"text-gray-400":"text-black"} leading-relaxed`}>
               {step.description}
             </p>
           </div>
