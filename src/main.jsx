@@ -11,15 +11,15 @@ import ThemeProvider from "./contexts/ThemeContext/ThemeProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider>
-      <HelmetProvider>
-        <MyServicesProvider>
+    <HelmetProvider>
+      <MyServicesProvider>
+        <ThemeProvider>
           <AuthProvider>
             <RouterProvider router={router} />
             <Toaster position="top-center" reverseOrder={false} />
           </AuthProvider>
-        </MyServicesProvider>
-      </HelmetProvider>
-    </ThemeProvider>
+        </ThemeProvider>
+      </MyServicesProvider>
+    </HelmetProvider>
   </StrictMode>
 );

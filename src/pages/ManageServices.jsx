@@ -51,7 +51,7 @@ const ManageServices = () => {
 
       {/*services Card section */}
       {myServices.length === 0 ? (
-        <h2 className="text-center mt-20 text-xl lg:text-2xl text-secondary">
+        <h2 className={`text-center mt-20 text-xl lg:text-2xl ${theme==="dark"?"text-gray-300":"text-secondary"}`}>
           No Services Found
         </h2>
       ) : (

@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import logoNav from "../../assets/images/logo2.png";
 import AuthContext from "../../contexts/authcontext/AuthContext";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import ThemeContext from "../../contexts/ThemeContext/ThemeContext";
 
 const Navbar = () => {
@@ -47,7 +47,6 @@ const Navbar = () => {
       document.removeEventListener("mousedown", closeDropDownDash);
     };
   }, []);
-
 
   const handleLogOut = () => {
     logOutUser()
@@ -96,7 +95,7 @@ const Navbar = () => {
             to="/all-services"
             className="group flex flex-col cursor-pointer text-white"
           >
-            Services
+            All Services
             <span
               className={`mt-[2px] h-[3px] rounded-full bg-secondary/90 transition-all duration-300 ${
                 location.pathname === "/all-services"
@@ -143,7 +142,11 @@ const Navbar = () => {
 
             {/* Dropdown Menu */}
             {dropDownDashState && (
-              <ul className="absolute left-0 top-10 z-10 w-56 rounded-lg bg-white shadow-lg p-4 space-y-2 text-black">
+              <ul
+                className={`${
+                  theme === "dark" ? "bg-gray-400" : "bg-white"
+                } absolute left-0 top-10 z-10 w-56 rounded-lg  shadow-lg p-4 space-y-2 text-black`}
+              >
                 <li>
                   <NavLink
                     to="/add-service"
@@ -203,20 +206,20 @@ const Navbar = () => {
         <div className="flex items-center justify-center">
           <div className="flex items-center">
             <span className="mr-2 text-sm text-gray-600 dark:text-gray-300">
-              {theme === 'dark' ? "Dark" : "Light"}
+              {theme === "dark" ? "Dark" : "Light"}
             </span>
             <button
               onClick={toggleTheme}
               className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors duration-300 ${
-                theme === 'dark' ? "bg-gray-700" : "bg-gray-200"
+                theme === "dark" ? "bg-gray-700" : "bg-gray-200"
               }`}
             >
               <span
                 className={`absolute left-1 top-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-white transition-transform duration-300 ${
-                  theme === 'dark' ? "translate-x-6" : "translate-x-0"
+                  theme === "dark" ? "translate-x-6" : "translate-x-0"
                 }`}
               >
-                {theme === 'dark' ? (
+                {theme === "dark" ? (
                   <FaMoon className="text-gray-700" />
                 ) : (
                   <FaSun className="text-yellow-500" />
@@ -226,16 +229,19 @@ const Navbar = () => {
           </div>
         </div>
         {user && user?.email ? (
-          <button
-            onClick={handleLogOut}
-            className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90"
-          >
-            LogOut
-          </button>
+          <div className="flex items-center gap-4">
+            <img className="size-10 rounded-full bg-slate-500 object-top hidden md:block" src={user?.photoURL} alt="User photo" />
+            <button
+              onClick={handleLogOut}
+              className="rounded-lg bg-secondary px-4 py-2 text-sm md:text-base font-semibold hover:bg-secondary/90"
+            >
+              Logout
+            </button>
+          </div>
         ) : (
           <Link
             to="/login"
-            className="rounded-lg bg-secondary px-4 py-2 text-sm font-semibold hover:bg-secondary/90"
+            className="rounded-lg bg-secondary px-4 py-2 text-sm md:text-base font-semibold hover:bg-secondary/90"
           >
             Login
           </Link>
@@ -279,7 +285,7 @@ const Navbar = () => {
                 }`
               }
             >
-              Services
+              All Services
             </NavLink>
           </li>
           {/* Mobile Dashboard Dropdown */}
