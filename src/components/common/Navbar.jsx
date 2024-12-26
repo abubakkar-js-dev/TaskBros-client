@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBars, FaMoon, FaSun } from "react-icons/fa";
 import logoNav from "../../assets/images/logo2.png";
 import AuthContext from "../../contexts/authcontext/AuthContext";
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -54,10 +55,10 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOutUser()
       .then(() => {
-        console.log("User logged out successfully");
+        // console.log("User logged out successfully");
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 

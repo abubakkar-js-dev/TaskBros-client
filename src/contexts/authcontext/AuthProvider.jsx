@@ -10,7 +10,7 @@ const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
 
-    console.log(user);
+    // console.log(user);
 
     const createUser = (email,password)=>{
         setLoading(true);
@@ -47,16 +47,16 @@ const AuthProvider = ({children}) => {
                 axios.post(`${import.meta.env.VITE_API_URL}/jwt`,user,{
                     withCredentials: true
                 })
-                .then(res=>{
-                    console.log(res.data,"from cookies when login")
+                .then(()=>{
+                    // console.log("from cookies when login")
                     setLoading(false);
                 })
             }else{
                 axios.post(`${import.meta.env.VITE_API_URL}/logOut`,{},{
                     withCredentials: true
                 })
-                .then(res=>{
-                    console.log('Cookie cleared successfully',res.data);
+                .then(()=>{
+                    // console.log('Cookie cleared successfully');
                     setLoading(false);
                 })
             }

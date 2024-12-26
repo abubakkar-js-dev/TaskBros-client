@@ -36,7 +36,7 @@ const AddService = () => {
       provider_img,
     };
 
-    console.log(newService);
+    // console.log(newService);
     // add service to the database
     axiosInstant
       .post(`/add-service`, newService)

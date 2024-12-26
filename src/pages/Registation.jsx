@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 const Registration = () => {
   const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
@@ -20,19 +21,19 @@ const Registration = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log("User created successfully");
+        // console.log("User created successfully");
         setUser(result.user);
         updateUserProfile({ displayName: full_name, photoURL: photo_url })
           .then(() => {
-            console.log("Profile updated successfully");
+            // console.log("Profile updated successfully");
             navigate(from || "/");
           })
           .catch((err) => {
-            console.log(err.message);
+            toast.error(err.code);
           });
       })
       .catch((err) => {
-        console.log(err.message);
+       toast.error(err.code);
       });
   };
   return (

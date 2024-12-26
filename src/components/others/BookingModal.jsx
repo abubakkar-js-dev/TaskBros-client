@@ -11,7 +11,7 @@ const BookingModal = ({ service }) => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
   const addressRef = useRef();
-  console.log(startDate);
+  // console.log(startDate);
   const {
     _id,
     imageUrl,
@@ -23,7 +23,7 @@ const BookingModal = ({ service }) => {
 
   const { displayName: booking_person_name, email: booking_person_email } =
     user;
-  console.log(booking_person_email, booking_person_name);
+  // console.log(booking_person_email, booking_person_name);
 
   useEffect(() => {
     if (openModal) {
@@ -53,7 +53,7 @@ const BookingModal = ({ service }) => {
       bookingInfo,
       service_status: "pending",
     };
-    console.log(newBooking);
+    // console.log(newBooking);
     // save into db
     axios.post(`${import.meta.env.VITE_API_URL}/book-service`,newBooking)
     .then(res=>{

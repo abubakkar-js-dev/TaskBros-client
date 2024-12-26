@@ -1,23 +1,29 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import ServiceCard from "../components/common/ServiceCard";
 import AuthContext from "../contexts/authcontext/AuthContext";
 import MyServicesContext from "../contexts/myservicesContext/MyServicesContext";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "../components/common/Loading";
 
 const ManageServices = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { myServicesState } = useContext(MyServicesContext);
   const { myServices, setMyServices } = myServicesState;
   const { user } = useContext(AuthContext);
   const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
-    axiosInstant
-      .get(`/my-services/${user.email}`)
-      .then((res) => {
-        setMyServices(res.data);
-      });
+    setIsLoading(true);
+    axiosInstant.get(`/my-services/${user.email}`).then((res) => {
+      setMyServices(res.data);
+      setIsLoading(false);
+    });
   }, [axiosInstant, setMyServices, user.email]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="section-wrap container mx-auto mt-16">

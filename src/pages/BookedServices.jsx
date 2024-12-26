@@ -3,19 +3,25 @@ import AuthContext from "../contexts/authcontext/AuthContext";
 import BookedService from "../components/common/BookedService";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "../components/common/Loading";
 
 const BookedServices = () => {
   const [bookedServices, setBookedServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
-    axiosInstant
-      .get(
-        `/booked-services?email=${user.email}`
-      )
-      .then((res) => setBookedServices(res.data));
+    setIsLoading(true);
+    axiosInstant.get(`/booked-services?email=${user.email}`).then((res) => {
+      setBookedServices(res.data);
+      setIsLoading(false);
+    });
   }, [axiosInstant, user.email]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="section-wrap container mx-auto mt-20">

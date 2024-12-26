@@ -4,17 +4,21 @@ import AuthContext from "../contexts/authcontext/AuthContext";
 import axios from "axios";
 import Toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "../components/common/Loading";
 
 const ServicesToDo = () => {
   const [bookedServices, setBookedServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(AuthContext);
   const axiosInstant = useAxiosSecure();
 
   useEffect(() => {
-   
-    axiosInstant
-      .get(`/booked-by-user?email=${user.email}`)
-      .then((res) => setBookedServices(res.data));
+    setIsLoading(true);
+
+    axiosInstant.get(`/booked-by-user?email=${user.email}`).then((res) => {
+      setBookedServices(res.data);
+      setIsLoading(false);
+    });
   }, [axiosInstant, user.email]);
 
   const handleUpdateStatus = (status, id) => {
@@ -40,6 +44,10 @@ const ServicesToDo = () => {
         }
       });
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="mt-16 lg:mt-20 container mx-auto section-wrap">

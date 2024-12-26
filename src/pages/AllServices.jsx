@@ -2,18 +2,32 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import ServiceCard from "../components/common/ServiceCard";
+import toast from "react-hot-toast";
+import Loading from "../components/common/Loading";
 
 const AllServices = () => {
   const [allServices, setAllServices] = useState([]);
+  const [isLoading,setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-  console.log(search);
+  // console.log(search);
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`${import.meta.env.VITE_API_URL}/all-services?search=${search}`)
     .then(res=>{
       setAllServices(res.data);
+      setIsLoading(false);
+    })
+    .catch(err=>{
+      toast.error(err);
+      setIsLoading(false);
     })
   }, [search]);
+
+
+  if(isLoading){
+    return <Loading />
+  }
 
   return (
     <div className="section-wrap p-4 max-w-7xl mx-auto mt-16">
