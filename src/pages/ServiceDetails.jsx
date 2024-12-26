@@ -26,7 +26,7 @@ const ServiceDetails = () => {
     setIsLoading(true);
     axiosInstant.get(`/all-services/${id}`).then((res) => {
       setService(res.data);
-      console.log(res);
+      // console.log(res);
       setIsLoading(false);
     });
   }, [axiosInstant, id]);

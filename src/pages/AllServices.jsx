@@ -20,7 +20,7 @@ const AllServices = () => {
       .then((res) => {
         setAllServices(res.data);
         setIsLoading(false);
-        console.log(res.data,"api response");
+        // console.log(res.data,"api response");
       })
       .catch((err) => {
         toast.error(err);
@@ -32,7 +32,7 @@ const AllServices = () => {
   //   return <Loading />
   // }
 
-  console.log('I am getting data',allServices)
+  // console.log('I am getting data',allServices)
 
   return (
     <div className="section-wrap p-4 max-w-7xl mx-auto mt-16">
