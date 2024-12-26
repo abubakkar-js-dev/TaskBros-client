@@ -11,7 +11,7 @@ const Testimonials = () => {
         "The service was outstanding! I couldn't be happier with the results. Highly recommend to anyone looking for quality work.",
       rating: 5,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        " https://i.ibb.co.com/p2rj5qT/client-1.jpg",
     },
     {
       name: "Sarah Smith",
@@ -19,7 +19,7 @@ const Testimonials = () => {
         "Great experience overall. The team was professional, and they delivered exactly what I was hoping for. Will definitely return!",
       rating: 4,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        "https://i.ibb.co.com/z7pjcRD/client-2.jpg",
     },
     {
       name: "Michael Johnson",
@@ -27,7 +27,7 @@ const Testimonials = () => {
         "I had a smooth and easy experience. The process was quick, and they were very attentive to my needs. I will definitely work with them again.",
       rating: 4,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        "https://i.ibb.co.com/sRcz2V5/client-3.jpg",
     },
     {
       name: "Emma Brown",
@@ -35,7 +35,7 @@ const Testimonials = () => {
         "Absolutely fantastic! They exceeded my expectations in every way. Friendly staff and impeccable service.",
       rating: 5,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        "https://i.ibb.co.com/sRcz2V5/client-3.jpg",
     },
     {
       name: "David Williams",
@@ -43,7 +43,7 @@ const Testimonials = () => {
         "Very pleased with the results. The team was efficient, and communication was clear. Would recommend to anyone in need of quality service.",
       rating: 4,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        "https://i.ibb.co.com/pj7qJqG/client4.jpg",
     },
     {
       name: "Sophia Davis",
@@ -51,7 +51,7 @@ const Testimonials = () => {
         "I couldn't be more satisfied. They really took the time to understand my requirements and delivered exactly what I wanted. Top-notch service!",
       rating: 5,
       image:
-        "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+        "https://i.ibb.co.com/qNrx3d9/client5.jpg",
     },
   ];
 
@@ -76,23 +76,35 @@ const Testimonials = () => {
 
   return (
     <section
-      className={`section-wrap ${theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
+      className={`section-wrap ${
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+      }`}
     >
       <div className="mx-auto container px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div data-aos="fade-right" className="mb-24">
           {/* title section */}
           <h4
-            className={`flex items-center gap-3 mb-2 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+            className={`flex items-center gap-3 mb-2 ${
+              theme === "dark" ? "text-gray-400" : "text-gray-500"
+            }`}
           >
             <span
-              className={`border-t-2 ${theme === "dark" ? "border-gray-600" : "border-gray-300"} w-10`}
+              className={`border-t-2 ${
+                theme === "dark" ? "border-gray-600" : "border-gray-300"
+              } w-10`}
             ></span>
-            <span className="uppercase tracking-wide text-sm">Testimonials</span>
+            <span className="uppercase tracking-wide text-sm">
+              Testimonials
+            </span>
             <span
-              className={`border-t-2 ${theme === "dark" ? "border-gray-600" : "border-gray-300"} w-10`}
+              className={`border-t-2 ${
+                theme === "dark" ? "border-gray-600" : "border-gray-300"
+              } w-10`}
             ></span>
           </h4>
-          <h2 className="section-title">Read trusted reviews from our customers</h2>
+          <h2 className="section-title">
+            Read trusted reviews from our customers
+          </h2>
         </div>
 
         <div data-aos="zoom-in" className="mt-8 max-w-7xl mx-auto">
@@ -100,7 +112,9 @@ const Testimonials = () => {
             {currentReviews.map((review, index) => (
               <blockquote
                 key={index}
-                className={`rounded-lg p-6 shadow-sm sm:p-8 ${theme === "dark" ? "bg-gray-700" : "bg-gray-50"}`}
+                className={`rounded-lg p-6 shadow-sm sm:p-8 ${
+                  theme === "dark" ? "bg-gray-700" : "bg-gray-50"
+                }`}
               >
                 <div className="flex items-center gap-4">
                   <img
@@ -129,7 +143,11 @@ const Testimonials = () => {
                     <p className="mt-0.5 text-lg font-medium">{review.name}</p>
                   </div>
                 </div>
-                <p className={`mt-4 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
+                <p
+                  className={`mt-4 ${
+                    theme === "dark" ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
                   {review.description}
                 </p>
               </blockquote>
