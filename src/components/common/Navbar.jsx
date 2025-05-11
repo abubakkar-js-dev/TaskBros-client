@@ -230,7 +230,7 @@ const Navbar = () => {
         </div>
         {user && user?.email ? (
           <div className="flex items-center gap-4">
-            <img className="size-10 rounded-full bg-slate-500 object-top hidden md:block" src={user?.photoURL} alt="User photo" />
+            <img className="size-12 border border-secondary rounded-full bg-slate-500 object-top hidden md:block" src={user?.photoURL} alt="User photo" />
             <button
               onClick={handleLogOut}
               className="rounded-lg bg-secondary px-4 py-2 text-sm md:text-base font-semibold hover:bg-secondary/90"
