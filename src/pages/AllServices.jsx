@@ -107,7 +107,7 @@ const AllServices = () => {
 
       {/*services Card section */}
       {allServices.length > 0 ? (
-        <div className="space-y-10">
+        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-5 justify-items-center self-center max-w-7xl mx-auto">
           {allServices.map((service, idx) => (
             <ServiceCard key={`${service._id}-${idx}`} service={service} />
           ))}
