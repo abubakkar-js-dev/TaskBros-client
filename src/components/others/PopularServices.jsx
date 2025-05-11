@@ -43,11 +43,23 @@ const PopularServices = () => {
     <div className={`section-wrap container mx-auto p-4`}>
       {/* Title Section */}
       <div className="mb-24" data-aos="fade-right">
-        <h4 className="flex items-center gap-3 mb-2">
-          <span className="border-t-2 border-gray-300 w-10"></span>
-          <span className="text-gray-500 uppercase tracking-wide text-sm">
-            Popular now
-          </span>
+   {/* Title section */}
+        <h4
+          className={`flex items-center gap-3 mb-2 ${
+            theme === "dark" ? "text-gray-400" : "text-gray-500"
+          }`}
+        >
+          <span
+            className={`border-t-2 ${
+              theme === "dark" ? "border-gray-600" : "border-gray-300"
+            } w-10`}
+          ></span>
+          <span className="uppercase tracking-wide text-sm">Popular Now</span>
+          <span
+            className={`border-t-2 ${
+              theme === "dark" ? "border-gray-600" : "border-gray-300"
+            } w-10`}
+          ></span>
         </h4>
         <h2 className={`section-title ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
           Discover the most sought-after services

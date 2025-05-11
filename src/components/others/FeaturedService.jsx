@@ -39,13 +39,13 @@ const FeaturedServices = () => {
         >
           <span
             className={`border-t-2 ${
-              theme === "dark" ? "border-gray-600" : "border-gray-300"
+              theme === "dark" ? "border-gray-300" : "border-gray-300"
             } w-10`}
           ></span>
           <span className="uppercase tracking-wide text-sm">Featured Services</span>
           <span
             className={`border-t-2 ${
-              theme === "dark" ? "border-gray-600" : "border-gray-300"
+              theme === "dark" ? "border-gray-300" : "border-gray-300"
             } w-10`}
           ></span>
         </h4>
